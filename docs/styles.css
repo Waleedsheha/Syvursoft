@@ -37,13 +37,35 @@ header {
     z-index: 100;
 }
 
+/* Header with both logos */
+.logos {
+    display: flex;
+    align-items: center;
+}
+
+.company-logo {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.company-logo small {
+    margin-right: 5px;
+    font-style: italic;
+    color: #777;
+}
+
+.company-logo img {
+    height: 25px;
+}
+
 .logo {
     display: flex;
     align-items: center;
 }
 
 .logo img {
-    height: 40px;
+    height: 50px; /* Adjust this value as needed */
     margin-right: 10px;
 }
 
@@ -157,6 +179,36 @@ footer {
     margin-top: 60px;
 }
 
+/* Footer with SyvurSoft logo */
+.footer-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.syvursoft-logo {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    footer .container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-branding {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+}
+
 footer .container {
     display: flex;
     justify-content: space-between;
@@ -197,10 +249,18 @@ footer .container {
     }
 }
 
-/* Mode cards - Force vertical stacking */
+/* Modes section - Centralized heading and improved card layout */
 .modes {
     padding: 60px 0;
     background-color: white;
+    text-align: center;
+}
+
+.modes h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .modes-grid {
@@ -209,6 +269,7 @@ footer .container {
     gap: 30px !important;
     margin-top: 40px !important;
     grid-template-columns: none !important;
+    align-items: center !important;
 }
 
 .mode-card {
@@ -220,6 +281,7 @@ footer .container {
     padding: 30px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
+    text-align: left;
 }
 
 .mode-card:hover {
@@ -271,5 +333,9 @@ footer .container {
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
+
+
+
 
 
