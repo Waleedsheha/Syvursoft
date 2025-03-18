@@ -31,7 +31,7 @@ body {
 header {
     background-color: white;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 15px 0;
+    padding: 20px 0;  /* Increased padding */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -41,22 +41,24 @@ header {
 .logos {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;  /* Allow wrapping if needed */
 }
 
 .company-logo {
     display: flex;
     align-items: center;
-    margin-left: 15px;
+    margin-left: 20px;
 }
 
 .company-logo small {
-    margin-right: 5px;
+    margin-right: 10px;
     font-style: italic;
     color: #777;
+    font-size: 16px;  /* Increased font size */
 }
 
 .company-logo img {
-    height: 50px;  /* Increased from 30px */
+    height: 100px;  /* Dramatically increased from 50px */
     width: auto;
     vertical-align: middle;
 }
@@ -189,8 +191,8 @@ footer {
 }
 
 .syvursoft-logo {
-    height: 60px;  /* Increased from 40px */
-    margin-bottom: 10px;
+    height: 120px;  /* Dramatically increased from 60px */
+    margin-bottom: 15px;
 }
 
 footer .container {
@@ -335,6 +337,8 @@ footer .container {
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
+
 
 
 
