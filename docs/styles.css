@@ -197,20 +197,23 @@ footer .container {
     }
 }
 
-/* Mode cards */
+/* Mode cards - Updated to stack vertically */
 .modes {
     padding: 60px 0;
     background-color: white;
 }
 
 .modes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 30px;
     margin-top: 40px;
 }
 
 .mode-card {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     background-color: var(--light-bg);
     border-radius: 10px;
     padding: 30px;
@@ -267,3 +270,4 @@ footer .container {
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
