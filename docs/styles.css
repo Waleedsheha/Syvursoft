@@ -197,23 +197,24 @@ footer .container {
     }
 }
 
-/* Mode cards - Updated to stack vertically */
+/* Mode cards - Force vertical stacking */
 .modes {
     padding: 60px 0;
     background-color: white;
 }
 
 .modes-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 40px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    margin-top: 40px !important;
+    grid-template-columns: none !important;
 }
 
 .mode-card {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
     background-color: var(--light-bg);
     border-radius: 10px;
     padding: 30px;
@@ -270,4 +271,5 @@ footer .container {
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
 
