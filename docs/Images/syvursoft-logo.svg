@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <defs>
+    <style>
+      .background {
+        fill: rgb(255, 253, 248);
+      }
+      
+      .logo-text {
+        font-family: 'Open Sans', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+        font-weight: bold;
+        fill: rgb(0, 0, 0);
+        paint-order: stroke;
+        stroke: rgb(255, 253, 248);
+        stroke-width: 1px;
+        filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3));
+      }
+      
+      .tagline {
+        font-family: 'Open Sans', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+        font-weight: normal;
+        fill: rgb(0, 0, 0);
+        font-size: 32px;
+        paint-order: stroke;
+        stroke: rgb(255, 253, 248);
+        stroke-width: 0.5px;
+        filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.3));
+      }
+    </style>
+  </defs>
+  
+  <!-- Background rectangle -->
+  <rect class="background" width="Full" height="Full" />
+  
+  <!-- Syvursoft Text -->
+  <text x="256" y="240" class="logo-text" text-anchor="middle" font-size="96">Syvursoft</text>
+  
+  <!-- Tagline -->
+  <text x="256" y="300" class="tagline" text-anchor="middle">Medical Software Solutions</text>
+</svg>
