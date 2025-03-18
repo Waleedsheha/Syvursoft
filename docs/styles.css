@@ -56,7 +56,7 @@ header {
 }
 
 .company-logo img {
-    height: 30px;
+    height: 50px;  /* Increased from 30px */
     width: auto;
     vertical-align: middle;
 }
@@ -189,7 +189,7 @@ footer {
 }
 
 .syvursoft-logo {
-    height: 40px;
+    height: 60px;  /* Increased from 40px */
     margin-bottom: 10px;
 }
 
@@ -335,6 +335,7 @@ footer .container {
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
 
 
 
