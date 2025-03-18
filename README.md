@@ -16,19 +16,11 @@ ABGenius is a specialized medical software solution that transforms complex arte
 
 ## Download
 
-- [iOS App Store](Testing)
-- [Google Play Store](Testing)
-- [Microsoft Store](Testing)
+- [iOS App Store](In Testing)
+- [Google Play Store](In Testing)
+- [Microsoft Store](In Testing)
 
-## For Developers
 
-ABGenius is built with .NET MAUI and C#. For development setup:
-
-```bash
-git clone https://github.com/syvursoft/ABGenius.git
-cd ABGenius
-dotnet restore
-```
 
 ## Support
 
