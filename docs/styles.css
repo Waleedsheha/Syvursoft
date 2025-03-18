@@ -56,7 +56,9 @@ header {
 }
 
 .company-logo img {
-    height: 25px;
+    height: 30px;
+    width: auto;
+    vertical-align: middle;
 }
 
 .logo {
@@ -333,6 +335,7 @@ footer .container {
     color: var(--primary-color);
     margin-bottom: 10px;
 }
+
 
 
 
