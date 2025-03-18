@@ -1,4 +1,4 @@
-© 2025 SyvurSoft. All Rights Reserved.
+© 2023 SyvurSoft. All Rights Reserved.
 
 This software and associated documentation files (the "Software") are the proprietary property of SyvurSoft and are protected by copyright law and international treaties.
 
