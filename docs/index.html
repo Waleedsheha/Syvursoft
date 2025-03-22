@@ -44,7 +44,16 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="images/app-screenshot.png" alt="ABGenius App Screenshot">
+                <div class="hero-carousel">
+                    <img src="images/app-screenshot.png" alt="ABGenius App Screenshot" class="active" onerror="this.src='images/placeholder.png'; this.alt='Coming Soon'">
+                    <img src="images/screenshot1.png" alt="ABGenius Analysis Screen" onerror="this.src='images/placeholder.png'; this.alt='Coming Soon'">
+                    <img src="images/screenshot2.png" alt="ABGenius Results Screen" onerror="this.src='images/placeholder.png'; this.alt='Coming Soon'">
+                </div>
+                <div class="hero-carousel-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
             </div>
         </div>
     </section>
@@ -430,18 +439,23 @@
 
         // Initialize screenshots to be visible on page load
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if screenshots are loaded correctly
-            const screenshots = document.querySelectorAll('.screenshot-img');
+            const screenshots = document.querySelectorAll('.hero-carousel img, .screenshot-img');
             screenshots.forEach(img => {
                 img.addEventListener('error', function() {
-                    this.src = 'images/placeholder.png'; // Fallback image if screenshot not found
-                    this.alt = 'Screenshot coming soon';
+                    this.src = 'images/placeholder.png';
+                    this.alt = 'Coming Soon';
+                    this.classList.add('placeholder-img');
                 });
             });
         });
     </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
