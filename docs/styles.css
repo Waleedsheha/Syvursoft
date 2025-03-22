@@ -684,6 +684,7 @@ footer .container {
     padding: 20px 0;
     scrollbar-width: none; /* Firefox */
     gap: 20px;
+    scroll-snap-type: x mandatory;
 }
 
 .screenshot-gallery::-webkit-scrollbar {
@@ -699,6 +700,7 @@ footer .container {
     background-color: #fff;
     transition: all 0.3s ease;
     position: relative;
+    scroll-snap-align: center;
 }
 
 .screenshot-container:hover {
@@ -713,6 +715,13 @@ footer .container {
     display: block;
     object-fit: cover;
     aspect-ratio: 9/16; /* Mobile app aspect ratio */
+    transition: opacity 0.3s ease;
+}
+
+/* Prevent image flickering */
+.screenshot-img[src="images/placeholder.png"] {
+    min-height: 400px;
+    background-color: #f0f4f8;
 }
 
 .screenshot-caption {
@@ -861,5 +870,6 @@ footer .container {
     font-size: 1.2rem;
     color: #666;
 }
+
 
 

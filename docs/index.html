@@ -163,35 +163,27 @@
             <div class="screenshot-gallery">
                 <div class="screenshot-container">
                     <img src="images/screenshot1.png" alt="ABGenius Main Interface" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
+                    <p class="screenshot-caption">Main Interface</p>
                 </div>
                 <div class="screenshot-container">
                     <img src="images/screenshot2.png" alt="ABGenius Results Screen" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
+                    <p class="screenshot-caption">Results Screen</p>
                 </div>
                 <div class="screenshot-container">
                     <img src="images/screenshot3.png" alt="ABGenius Simulation Mode" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
+                    <p class="screenshot-caption">Simulation Mode</p>
                 </div>
                 <div class="screenshot-container">
                     <img src="images/screenshot4.png" alt="ABGenius Reference Library" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
+                    <p class="screenshot-caption">Reference Library</p>
                 </div>
                 <div class="screenshot-container">
                     <img src="images/screenshot5.png" alt="ABGenius Parameter Input" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
+                    <p class="screenshot-caption">Parameter Input</p>
                 </div>
                 <div class="screenshot-container">
                     <img src="images/screenshot6.png" alt="ABGenius Treatment Recommendations" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
-                </div>
-                <div class="screenshot-container">
-                    <img src="images/screenshot7.png" alt="ABGenius Educational Mode" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
-                </div>
-                <div class="screenshot-container">
-                    <img src="images/screenshot8.png" alt="ABGenius Settings" class="screenshot-img">
-                    <p class="screenshot-caption">testing</p>
+                    <p class="screenshot-caption">Treatment Recommendations</p>
                 </div>
             </div>
             
@@ -414,18 +406,94 @@
             }
         }
         
+        // Complete rewrite of screenshot handling to eliminate flickering
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all screenshot containers with placeholders
+            const screenshotContainers = document.querySelectorAll('.screenshot-container');
+            
+            screenshotContainers.forEach(container => {
+                const img = container.querySelector('.screenshot-img');
+                
+                // Create and add placeholder
+                const placeholder = document.createElement('div');
+                placeholder.className = 'screenshot-placeholder';
+                placeholder.textContent = 'Coming Soon';
+                container.insertBefore(placeholder, img);
+                
+                // Mark image as loading
+                img.classList.add('loading');
+                
+                // Set up image loading
+                if (img.complete) {
+                    handleImageLoad(img, placeholder);
+                } else {
+                    img.onload = function() {
+                        handleImageLoad(img, placeholder);
+                    };
+                    
+                    img.onerror = function() {
+                        // Keep placeholder visible on error
+                        img.style.display = 'none';
+                    };
+                }
+            });
+            
+            function handleImageLoad(img, placeholder) {
+                // Check if image actually loaded successfully (has dimensions)
+                if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+                    // Hide placeholder, show image
+                    placeholder.style.display = 'none';
+                    img.classList.remove('loading');
+                    img.classList.add('loaded');
+                } else {
+                    // Keep placeholder visible
+                    img.style.display = 'none';
+                }
+            }
+        });
+        
+        // Improved screenshot navigation
         function changeScreenshot(direction) {
             const gallery = document.querySelector('.screenshot-gallery');
-            const container = document.querySelector('.screenshot-container');
-            const containerWidth = container.offsetWidth;
-            const margin = parseInt(window.getComputedStyle(container).marginRight);
-            const scrollAmount = containerWidth + margin;
+            const containers = document.querySelectorAll('.screenshot-container');
+            
+            if (containers.length === 0) return;
+            
+            const containerWidth = containers[0].offsetWidth;
+            const gap = 20; // Match the CSS gap value
+            const scrollAmount = containerWidth + gap;
+            
+            // Calculate target scroll position
+            const currentScroll = gallery.scrollLeft;
+            let targetScroll;
             
             if (direction > 0) {
-                gallery.scrollLeft += scrollAmount;
+                targetScroll = Math.min(
+                    gallery.scrollWidth - gallery.clientWidth,
+                    Math.ceil(currentScroll / scrollAmount) * scrollAmount
+                );
+                
+                // If we're already at or near the end, loop back to start
+                if (targetScroll <= currentScroll + 10) {
+                    targetScroll = 0;
+                }
             } else {
-                gallery.scrollLeft -= scrollAmount;
+                targetScroll = Math.max(
+                    0,
+                    Math.floor(currentScroll / scrollAmount - 1) * scrollAmount
+                );
+                
+                // If we're already at or near the start, loop to end
+                if (targetScroll >= currentScroll - 10) {
+                    targetScroll = Math.max(0, gallery.scrollWidth - gallery.clientWidth);
+                }
             }
+            
+            // Smooth scroll to target
+            gallery.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
         }
 
         // Add keyboard navigation for screenshots
@@ -436,21 +504,11 @@
                 changeScreenshot(-1);
             }
         });
-
-        // Initialize screenshots to be visible on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const screenshots = document.querySelectorAll('.hero-carousel img, .screenshot-img');
-            screenshots.forEach(img => {
-                img.addEventListener('error', function() {
-                    this.src = 'images/placeholder.png';
-                    this.alt = 'Coming Soon';
-                    this.classList.add('placeholder-img');
-                });
-            });
-        });
     </script>
 </body>
 </html>
+
+
 
 
 
