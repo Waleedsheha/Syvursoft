@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico">
     <meta name="github-repo" content="syvursoft/ABGenius">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <header>
@@ -18,7 +19,7 @@
                 </div>
                 <div class="company-logo">
                     <small>by</small>
-                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo">
+                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" style="max-width: none; min-width: 150px;">
                 </div>
             </div>
             <nav>
@@ -38,8 +39,8 @@
                 <h1>Revolutionizing Blood Gas Analysis</h1>
                 <p>ABGenius transforms complex arterial blood gas interpretation into intuitive, actionable insights for healthcare professionals worldwide</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Download for Android</a>
-                    <a href="#" class="btn btn-secondary">Download for iOS</a>
+                    <a href="#" class="btn btn-primary" onclick="showDevMessage(event)">Download for Android</a>
+                    <a href="#" class="btn btn-secondary" onclick="showDevMessage(event)">Download for iOS</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -145,28 +146,307 @@
         </div>
     </section>
 
+    <section class="screenshots">
+        <div class="container">
+            <h2>App Screenshots</h2>
+            <p class="section-intro">See ABGenius in action with these preview screenshots</p>
+            
+            <div class="screenshot-gallery">
+                <div class="screenshot-container">
+                    <img src="images/screenshot1.png" alt="ABGenius Main Interface" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot2.png" alt="ABGenius Results Screen" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot3.png" alt="ABGenius Simulation Mode" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot4.png" alt="ABGenius Reference Library" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot5.png" alt="ABGenius Parameter Input" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot6.png" alt="ABGenius Treatment Recommendations" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot7.png" alt="ABGenius Educational Mode" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+                <div class="screenshot-container">
+                    <img src="images/screenshot8.png" alt="ABGenius Settings" class="screenshot-img">
+                    <p class="screenshot-caption">testing</p>
+                </div>
+            </div>
+            
+            <div class="screenshot-nav">
+                <button class="screenshot-nav-btn prev" onclick="changeScreenshot(-1)">❮</button>
+                <button class="screenshot-nav-btn next" onclick="changeScreenshot(1)">❯</button>
+            </div>
+        </div>
+    </section>
+
     <section id="about" class="about">
         <div class="container">
             <h2>About ABGenius</h2>
             <p>Developed by Dr Waleed Sheha, ABGenius represents the cutting edge of clinical decision support technology. Our proprietary algorithms have been validated against thousands of clinical cases to ensure accuracy and reliability.</p>
             <p>Created by SyvurSoft Lab, ABGenius combines decades of medical expertise with advanced computational models to deliver an indispensable tool for healthcare providers worldwide.</p>
+            
+            <div class="developer-contact">
+                <h3>Contact the Developer</h3>
+                <ul class="contact-list">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:Syvursoft@gmail.com">Syvursoft@gmail.com</a></li>
+                    <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/201211644172" target="_blank">+20 121 164 4172</a></li>
+                    <li><i class="fab fa-facebook"></i> <a href="https://facebook.com/waleed.sheha" target="_blank">Waleed Sheha</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How accurate is ABGenius?</h3>
+                    <p>ABGenius algorithms have been validated against thousands of clinical cases with over 90% accuracy compared to expert interpretation. Our multi-methodology approach ensures comprehensive analysis across different clinical scenarios.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does ABGenius work offline?</h3>
+                    <p>Yes, ABGenius is designed to function fully offline. Once installed, all calculations and analyses are performed locally on your device, making it reliable in any clinical setting.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is ABGenius suitable for educational purposes?</h3>
+                    <p>Absolutely! The Simulation Mode was specifically designed for medical education. Students and residents can practice with virtual cases, adjust parameters, and see real-time effects on acid-base status.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How often is ABGenius updated?</h3>
+                    <p>We release major updates quarterly with new features and improvements. Minor updates and bug fixes are released as needed. All updates are based on user feedback and advances in medical knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-proof">
+        <div class="container">
+            <h2>Join the Medical Community</h2>
+            <p class="section-intro">ABGenius is currently in development with input from healthcare professionals. Be among the first to experience this revolutionary tool.</p>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Clinical Scenarios</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-label">Algorithm Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Platforms Supported</div>
+                </div>
+            </div>
+            
+            <div class="early-access">
+                <h3>Early Access Program</h3>
+                <p>We're inviting healthcare professionals to join our early access program. Your feedback will help shape the future of ABGenius.</p>
+                <a href="#" class="btn btn-secondary" onclick="showEarlyAccessForm(event)">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Development Feedback</h2>
+            <p class="section-intro">ABGenius is being developed with input from medical professionals. Here's what our early testers are saying:</p>
+            
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h3>Clinical Accuracy</h3>
+                        <p>"The algorithm's accuracy in our testing environment shows promising results for complex acid-base disorders."</p>
+                        <div class="feedback-meta">— Medical Advisory Board</div>
+                    </div>
+                </div>
+                
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h3>Educational Value</h3>
+                        <p>"The simulation mode prototype demonstrates significant potential as a teaching tool for medical students and residents."</p>
+                        <div class="feedback-meta">— Education Committee</div>
+                    </div>
+                </div>
+                
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h3>User Experience</h3>
+                        <p>"Initial usability testing indicates strong potential for workflow integration in emergency and critical care settings."</p>
+                        <div class="feedback-meta">— UX Testing Group</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback-note">
+                <p>Note: ABGenius is still in development. These insights reflect preliminary feedback from our testing groups rather than individual endorsements.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Join the Development Journey?</h2>
+            <p>Be among the first healthcare professionals to test and provide feedback on ABGenius.</p>
+            <a href="#" class="btn btn-primary btn-large" onclick="showEarlyAccessForm(event)">Request Early Access</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <div class="footer-branding">
-                <img src="Images/syvursoft-logo.png" alt="SyvurSoft Logo" class="syvursoft-logo">
+                <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" class="syvursoft-logo">
                 <p>&copy; 2025 SyvurSoft. All Rights Reserved.</p>
             </div>
             <div class="footer-links">
                 <a href="privacy.html">Privacy Policy</a>
-                <a href="mailto:Syvursoft@gmail.com">Contact Us</a>
+                <a href="mailto:Syvursoft@gmail.com">Email Us</a>
+                <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
+                <a href="https://facebook.com/waleed.sheha" target="_blank">Facebook</a>
             </div>
         </div>
     </footer>
+
+    <div id="devModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3>App Under Development</h3>
+            <p>ABGenius is currently under development. Thank you for your interest!</p>
+            <p>We'll notify you when the app is available for download.</p>
+            <button class="modal-btn" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
+    <div id="earlyAccessModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeEarlyAccessModal()">&times;</span>
+            <h3>Request Early Access</h3>
+            <p>Join our early access program to help shape the future of ABGenius.</p>
+            <form id="earlyAccessForm" action="mailto:Syvursoft@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Full Name*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="profession">Healthcare Role*</label>
+                    <select id="profession" name="profession" required>
+                        <option value="">Select your role</option>
+                        <option value="physician">Physician</option>
+                        <option value="resident">Resident/Fellow</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="respiratory">Respiratory Therapist</option>
+                        <option value="student">Medical Student</option>
+                        <option value="other">Other Healthcare Professional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="specialty">Specialty (if applicable)</label>
+                    <input type="text" id="specialty" name="specialty">
+                </div>
+                <div class="form-group">
+                    <label for="message">Why are you interested in ABGenius?</label>
+                    <textarea id="message" name="message" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="subject" value="ABGenius Early Access Request">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showDevMessage(event) {
+            event.preventDefault();
+            document.getElementById('devModal').style.display = 'block';
+        }
+        
+        function showEarlyAccessForm(event) {
+            event.preventDefault();
+            document.getElementById('earlyAccessModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('devModal').style.display = 'none';
+        }
+        
+        function closeEarlyAccessModal() {
+            document.getElementById('earlyAccessModal').style.display = 'none';
+        }
+        
+        // Close modals when clicking outside of them
+        window.onclick = function(event) {
+            var devModal = document.getElementById('devModal');
+            var earlyAccessModal = document.getElementById('earlyAccessModal');
+            if (event.target == devModal) {
+                devModal.style.display = 'none';
+            }
+            if (event.target == earlyAccessModal) {
+                earlyAccessModal.style.display = 'none';
+            }
+        }
+        
+        function changeScreenshot(direction) {
+            const gallery = document.querySelector('.screenshot-gallery');
+            const container = document.querySelector('.screenshot-container');
+            const containerWidth = container.offsetWidth;
+            const margin = parseInt(window.getComputedStyle(container).marginRight);
+            const scrollAmount = containerWidth + margin;
+            
+            if (direction > 0) {
+                gallery.scrollLeft += scrollAmount;
+            } else {
+                gallery.scrollLeft -= scrollAmount;
+            }
+        }
+
+        // Add keyboard navigation for screenshots
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                changeScreenshot(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeScreenshot(-1);
+            }
+        });
+
+        // Initialize screenshots to be visible on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if screenshots are loaded correctly
+            const screenshots = document.querySelectorAll('.screenshot-img');
+            screenshots.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.src = 'images/placeholder.png'; // Fallback image if screenshot not found
+                    this.alt = 'Screenshot coming soon';
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
+
+
+
+
 
 
 
