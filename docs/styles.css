@@ -668,7 +668,7 @@ footer .container {
     margin-left: 20px;
 }
 
-/* Enhanced Screenshots Section */
+/* Enhanced Screenshots Section - Fix display and sliding issues */
 .screenshots {
     padding: 70px 0;
     background-color: var(--light-bg);
@@ -694,6 +694,7 @@ footer .container {
 .screenshot-container {
     flex: 0 0 auto;
     width: 300px;
+    height: 550px; /* Fixed height to prevent layout shifts */
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -710,27 +711,39 @@ footer .container {
 
 .screenshot-img {
     width: 100%;
-    height: auto;
+    height: 85%; /* Fixed height percentage */
     border-radius: 12px 12px 0 0;
     display: block;
     object-fit: cover;
-    aspect-ratio: 9/16; /* Mobile app aspect ratio */
-    transition: opacity 0.3s ease;
+    opacity: 1; /* Show images by default */
 }
 
-/* Prevent image flickering */
-.screenshot-img[src="images/placeholder.png"] {
-    min-height: 400px;
+.screenshot-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 85%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #f0f4f8;
+    color: #666;
+    font-weight: bold;
+    z-index: 1;
 }
 
 .screenshot-caption {
+    height: 15%; /* Fixed height percentage */
     padding: 15px;
     text-align: center;
     font-weight: 500;
     color: var(--text-color);
-    background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,1));
+    background: white;
     border-top: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .screenshot-nav {
@@ -870,6 +883,7 @@ footer .container {
     font-size: 1.2rem;
     color: #666;
 }
+
 
 
 
