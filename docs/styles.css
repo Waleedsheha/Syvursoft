@@ -30,8 +30,9 @@ body {
 /* Header */
 header {
     background-color: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    padding: 10px 0;  /* Reduced from 15px */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    /* Reduced from 15px */
     position: sticky;
     top: 0;
     z-index: 70;
@@ -59,7 +60,8 @@ header {
 }
 
 .company-logo img {
-    height: 40px;  /* Reduced from 100px */
+    height: 40px;
+    /* Reduced from 100px */
     width: auto;
     vertical-align: middle;
     max-width: 100px;
@@ -72,7 +74,8 @@ header {
 }
 
 .logo img {
-    height: 40px; /* Slightly reduced */
+    height: 40px;
+    /* Slightly reduced */
     margin-right: 10px;
 }
 
@@ -121,7 +124,7 @@ nav ul li a:hover {
     font-weight: 700;
     color: var(--primary-color);
     margin-bottom: 30px;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content h2 {
@@ -148,7 +151,7 @@ nav ul li a:hover {
 .hero-image img {
     max-width: 100%;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Buttons */
@@ -203,7 +206,8 @@ footer {
     display: flex;
     align-items: center;
     gap: 20px;
-    margin-right: auto; /* Push to far left */
+    margin-right: auto;
+    /* Push to far left */
 }
 
 .syvursoft-logo {
@@ -242,12 +246,13 @@ footer {
         gap: 20px;
         text-align: center;
     }
-    
+
     .footer-branding {
         flex-direction: column;
-        margin-right: 0; /* Reset margin for centered layout */
+        margin-right: 0;
+        /* Reset margin for centered layout */
     }
-    
+
     .footer-links {
         flex-wrap: wrap;
         justify-content: center;
@@ -265,23 +270,23 @@ footer {
     .hero .container {
         flex-direction: column;
     }
-    
+
     .hero-content {
         padding-right: 0;
         margin-bottom: 40px;
     }
-    
+
     .footer-content {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-    
+
     .footer-branding {
         align-items: center;
         margin-bottom: 20px;
     }
-    
+
     .footer-links {
         margin-top: 20px;
         justify-content: center;
@@ -303,7 +308,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
+    background-image:
         radial-gradient(circle at 10% 20%, rgba(0, 102, 204, 0.03) 0%, transparent 20%),
         radial-gradient(circle at 90% 30%, rgba(0, 102, 204, 0.03) 0%, transparent 20%),
         radial-gradient(circle at 30% 70%, rgba(0, 102, 204, 0.03) 0%, transparent 20%),
@@ -351,7 +356,7 @@ footer {
 .mode-card {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 16px;
-    box-shadow: 
+    box-shadow:
         0 10px 30px rgba(0, 0, 0, 0.08),
         0 0 0 1px rgba(0, 102, 204, 0.1);
     padding: 40px;
@@ -374,7 +379,7 @@ footer {
 
 .mode-card:hover {
     transform: translateY(-5px) rotateX(2deg);
-    box-shadow: 
+    box-shadow:
         0 20px 40px rgba(0, 0, 0, 0.12),
         0 0 0 1px rgba(0, 102, 204, 0.2);
 }
@@ -467,11 +472,11 @@ footer {
     .modes-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .mode-card:nth-child(2) {
         transform: none;
     }
-    
+
     .mode-card:nth-child(2):hover {
         transform: translateY(-5px) rotateX(2deg);
     }
@@ -575,11 +580,11 @@ footer {
     .feature-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .feature-card {
         padding: 20px;
     }
-    
+
     .feature-icon {
         width: 60px;
         height: 60px;
@@ -632,35 +637,112 @@ footer {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 .modal-content {
-    background-color: white;
-    margin: 5vh auto;
-    padding: 30px;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    max-height: 90vh;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 80%;
+    max-width: 800px;
+    max-height: 85vh;
     overflow-y: auto;
+    animation: slideIn 0.3s ease-in-out;
 }
 
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 24px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animated-modal {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Make sure the button is clearly visible and clickable */
+#analyze-btn {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    height: 48px;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
     cursor: pointer;
-    color: #777;
-    transition: color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.close-modal:hover {
-    color: #333;
+#analyze-btn:hover {
+    background-color: #0069d9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+#analyze-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add a ripple effect to make the button more interactive */
+#analyze-btn::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+#analyze-btn:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
 }
 
 /* Early Access Form Specific Styling */
@@ -746,7 +828,7 @@ footer {
     background-color: var(--light-bg);
     border-radius: 10px;
     padding: 25px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
 }
 
 .faq-item h3 {
@@ -844,7 +926,7 @@ footer {
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .early-access h3 {
@@ -862,7 +944,7 @@ footer {
     .stats-container {
         flex-direction: column;
     }
-    
+
     .stat-item {
         margin-bottom: 20px;
     }
@@ -1041,7 +1123,7 @@ footer {
     .feedback-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .feedback-card {
         margin-bottom: 20px;
     }
@@ -1186,16 +1268,16 @@ footer {
         flex-direction: column;
         align-items: center;
     }
-    
+
     .support-option {
         max-width: 100%;
         width: 100%;
     }
-    
+
     .contact-buttons {
         flex-direction: column;
     }
-    
+
     .contact-btn {
         width: 100%;
         justify-content: center;
@@ -1349,14 +1431,1429 @@ footer {
     .values-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .contact-info {
         flex-direction: column;
     }
-    
+
     .contact-item {
         width: 100%;
     }
 }
+
+/* Quick Mode Section Styling */
+.quick-mode {
+    padding: 40px 0;
+    background-color: #000;
+    color: #fffdf8;
+}
+
+.quick-mode h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.quick-mode h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: #fffdf8;
+    border-radius: 3px;
+}
+
+/* Demo label styling for quick mode */
+.quick-mode .demo-label {
+    text-align: center;
+    margin: -15px auto 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: block;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 4px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Enhanced shadow effects for Quick Analysis section */
+.quick-analysis-card {
+    background-color: #000;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Override the blue line that appears at the top of mode-card */
+.quick-analysis-card::before {
+    display: none;
+    box-shadow: 0 0 20px rgba(255, 253, 248, 0.1);
+    border: 1px solid rgba(255, 253, 248, 0.1);
+}
+
+/* Modal Close Button */
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+/* Make sure the modal content has proper positioning */
+.modal-content {
+    position: relative;
+    padding-top: 40px;
+    /* Make room for the close button */
+}
+
+.input-container {
+    background-color: white;
+    border-radius: 5px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.input-group {
+    background-color: #fffdf8;
+    border-radius: 5px;
+    padding: 16px 12px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.input-group label {
+    font-size: 16px;
+    color: #000;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: #000;
+    font-size: 16px;
+    padding: 5px 0;
+}
+
+.input-group input::placeholder {
+    color: #9CA3AF;
+}
+
+/* Remove arrows/spinners from number inputs */
+.input-group input[type="number"]::-webkit-inner-spin-button,
+.input-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-group input[type="number"] {
+    appearance: textfield;
+    /* Standard */
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+#analyze-btn {
+    background-color: #fffdf8;
+    color: #000;
+    font-weight: bold;
+    height: 48px;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 20px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+#analyze-btn:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* ABG Results Styling */
+.result-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.result-section h3 {
+    color: #000;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.result-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background-color: #fffdf8;
+}
+
+/* Enhanced Henderson-Hasselbalch validation styling */
+.validation-section {
+    margin-bottom: 20px;
+}
+
+.validation-result {
+    display: flex;
+    align-items: flex-start;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.validation-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.validation-content {
+    flex-grow: 1;
+}
+
+.validation-result.valid {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    color: #155724;
+}
+
+.validation-result.invalid {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    color: #721c24;
+}
+
+.validation-result.valid .validation-icon {
+    color: #28a745;
+}
+
+.validation-result.invalid .validation-icon {
+    color: #dc3545;
+}
+
+.calculated-value {
+    margin-top: 8px;
+    font-family: monospace;
+    font-size: 14px;
+    padding: 5px 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.validation-result.valid strong {
+    color: #155724;
+}
+
+.validation-result.invalid strong {
+    color: #721c24;
+}
+
+.status-compensated {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.status-uncompensated {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.compensation-note {
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Enhanced Clinical Suggestions styling */
+.clinical-suggestion {
+    background: linear-gradient(to right, rgba(240, 240, 245, 0.8), rgba(245, 248, 250, 0.9));
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 15px;
+    border-left: 5px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.clinical-suggestion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.clinical-suggestion h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    border-bottom: 2px solid rgba(0, 102, 204, 0.2);
+    padding-bottom: 8px;
+}
+
+.clinical-suggestion ul {
+    margin-left: 5px;
+    list-style-type: none;
+}
+
+.clinical-suggestion li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.clinical-suggestion li:before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    left: 5px;
+}
+
+.clinical-suggestion p {
+    color: #495057;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Critical alert styling */
+.critical-alert {
+    background: linear-gradient(to right, rgba(220, 53, 69, 0.15), rgba(220, 53, 69, 0.05));
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-left: 5px solid #dc3545;
+    box-shadow: 0 3px 10px rgba(220, 53, 69, 0.1);
+    transition: all 0.3s ease;
+}
+
+.critical-alert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.15);
+}
+
+.critical-alert h4 {
+    color: #dc3545;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.critical-alert h4::before {
+    content: '⚠️';
+    font-size: 1.4rem;
+}
+
+.critical-alert ul {
+    margin-left: 5px;
+    list-style-type: none;
+}
+
+.critical-alert li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.critical-alert li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #dc3545;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.critical-alert li strong {
+    color: #dc3545;
+}
+
+.critical-alert li ul {
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+/* Treatment recommendations styling */
+.treatment-section {
+    background: linear-gradient(to right, rgba(230, 240, 250, 0.8), rgba(240, 248, 255, 0.9));
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 20px;
+    border-left: 5px solid #17a2b8;
+    box-shadow: 0 3px 10px rgba(23, 162, 184, 0.1);
+}
+
+.treatment-section h3 {
+    color: #17a2b8;
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+}
+
+.treatment-section ul {
+    margin-left: 5px;
+    list-style-type: none;
+}
+
+.treatment-section li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.treatment-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Parameter alerts styling */
+.parameter-alert {
+    background: linear-gradient(to right, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05));
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-left: 5px solid #ffc107;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.1);
+    transition: all 0.3s ease;
+}
+
+.parameter-alert:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.15);
+}
+
+.parameter-alert h4 {
+    color: #856404;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.parameter-alert h4::before {
+    content: '📊';
+    font-size: 1.3rem;
+}
+
+.parameter-alert ul {
+    margin-left: 5px;
+    list-style-type: none;
+}
+
+.parameter-alert li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #5a5a5a;
+}
+
+.parameter-alert li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #856404;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Specific condition styling */
+.condition-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.condition-card:hover {
+    transform: translateX(3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.condition-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.condition-description {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Condition type colors */
+.condition-metabolic {
+    border-left-color: #28a745;
+}
+
+.condition-metabolic .condition-title {
+    color: #28a745;
+}
+
+.condition-respiratory {
+    border-left-color: #007bff;
+}
+
+.condition-respiratory .condition-title {
+    color: #007bff;
+}
+
+.condition-mixed {
+    border-left-color: #6f42c1;
+}
+
+.condition-mixed .condition-title {
+    color: #6f42c1;
+}
+
+.condition-emergency {
+    border-left-color: #dc3545;
+}
+
+.condition-emergency .condition-title {
+    color: #dc3545;
+}
+
+/* Enhanced Compensation Analysis styling */
+.compensation-section {
+    margin-bottom: 20px;
+}
+
+.compensation-details {
+    background-color: rgba(248, 249, 250, 0.7);
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.compensation-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.compensation-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.compensation-label {
+    font-weight: bold;
+    width: 120px;
+    color: #495057;
+}
+
+.compensation-value {
+    font-family: monospace;
+    font-size: 16px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.compensation-value.normal {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #155724;
+}
+
+.compensation-value.abnormal {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #856404;
+}
+
+.compensation-measured {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.status-compensated {
+    font-weight: bold;
+    color: #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.status-uncompensated {
+    font-weight: bold;
+    color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+.compensation-note {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-style: italic;
+    position: relative;
+    padding-left: 25px;
+}
+
+.compensation-note::before {
+    content: "→";
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: bold;
+}
+
+.compensation-note.acidemic {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-left: 3px solid #dc3545;
+    color: #721c24;
+}
+
+.compensation-note.alkalemic {
+    background-color: rgba(0, 123, 255, 0.1);
+    border-left: 3px solid #007bff;
+    color: #004085;
+}
+
+.compensation-note.normal {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-left: 3px solid #28a745;
+    color: #155724;
+}
+
+/* Enhanced Primary Disorder styling */
+.result-section:has(h3:contains("Primary Disorder")) {
+    margin-bottom: 30px;
+}
+
+.disorder-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+.disorder-container:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.disorder-header {
+    padding: 15px 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--primary-color), #0099ff);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.disorder-header i {
+    font-size: 1.5rem;
+}
+
+.disorder-content {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
+}
+
+.disorder-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.disorder-details {
+    background-color: var(--light-bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.disorder-details ul {
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+.disorder-details li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.disorder-details li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Disorder type-specific styling */
+.disorder-acidosis .disorder-header {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b);
+}
+
+.disorder-alkalosis .disorder-header {
+    background: linear-gradient(135deg, #007bff, #00c6ff);
+}
+
+.disorder-mixed .disorder-header {
+    background: linear-gradient(135deg, #ffc107, #ffeb3b);
+    color: #212529;
+}
+
+.disorder-normal .disorder-header {
+    background: linear-gradient(135deg, #28a745, #5cb85c);
+}
+
+/* Badge for disorder severity */
+.disorder-severity {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 10px;
+    color: white;
+}
+
+.severity-mild {
+    background-color: #17a2b8;
+}
+
+.severity-moderate {
+    background-color: #fd7e14;
+}
+
+.severity-severe {
+    background-color: #dc3545;
+}
+
+.severity-normal {
+    background-color: #28a745;
+}
+
+/* Disorder type styling with enhanced gradients */
+.disorder-summary.acidosis {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.15), rgba(220, 53, 69, 0.05));
+    border-left: 5px solid #dc3545;
+}
+
+.disorder-summary.alkalosis {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.15), rgba(0, 123, 255, 0.05));
+    border-left: 5px solid #007bff;
+}
+
+.disorder-summary.mixed {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.05));
+    border-left: 5px solid #ffc107;
+}
+
+.disorder-summary.normal {
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.15), rgba(40, 167, 69, 0.05));
+    border-left: 5px solid #28a745;
+}
+
+/* Disorder text styling with enhanced typography */
+.disorder-main-point {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #212529;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.disorder-main-point::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.disorder-sub-point {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 18px;
+    color: #495057;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.disorder-sub-point::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #6c757d;
+    font-weight: bold;
+}
+
+.disorder-text {
+    margin-bottom: 10px;
+    color: #495057;
+    line-height: 1.6;
+}
+
+.disorder-empty {
+    padding: 20px;
+    background-color: rgba(108, 117, 125, 0.1);
+    border-radius: 8px;
+    color: #6c757d;
+    text-align: center;
+    font-style: italic;
+    font-size: 16px;
+}
+
+/* Specific disorder type icon colors and animations */
+.disorder-summary.acidosis .disorder-icon {
+    color: #dc3545;
+    animation: pulse-red 2s infinite;
+}
+
+.disorder-summary.alkalosis .disorder-icon {
+    color: #007bff;
+    animation: pulse-blue 2s infinite;
+}
+
+.disorder-summary.mixed .disorder-icon {
+    color: #ffc107;
+    animation: pulse-yellow 2s infinite;
+}
+
+.disorder-summary.normal .disorder-icon {
+    color: #28a745;
+    animation: pulse-green 2s infinite;
+}
+
+/* Pulse animations for icons */
+@keyframes pulse-red {
+    0% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+    }
+}
+
+@keyframes pulse-blue {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
+
+@keyframes pulse-yellow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 193, 7, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0);
+    }
+}
+
+@keyframes pulse-green {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+/* Badge styling for disorder types */
+.disorder-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.disorder-badge.acidosis {
+    background-color: #dc3545;
+}
+
+.disorder-badge.alkalosis {
+    background-color: #007bff;
+}
+
+.disorder-badge.mixed {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.disorder-badge.normal {
+    background-color: #28a745;
+}
+
+/* Parameter value display */
+.parameter-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.parameter-value {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.parameter-value.abnormal {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+.parameter-value.normal {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+/* Enhanced Treatment Section Styling */
+.treatment-content {
+    margin-top: 10px;
+}
+
+.treatment-content h4 {
+    color: #0056b3;
+    margin: 15px 0 10px;
+    font-size: 1.1rem;
+    border-left: 3px solid #0056b3;
+    padding-left: 10px;
+}
+
+.treatment-content ul {
+    margin-left: 5px;
+    list-style-type: none;
+}
+
+.treatment-content ul ul {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+.treatment-content li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.treatment-content li:before {
+    content: "•";
+    color: #17a2b8;
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    left: 5px;
+}
+
+.treatment-content li strong {
+    color: #0056b3;
+}
+
+.medication-dosing {
+    margin-top: 15px;
+    overflow-x: auto;
+}
+
+.medication-dosing table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.medication-dosing th {
+    background-color: #e6f2ff;
+    color: #0056b3;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.medication-dosing td {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+}
+
+.medication-dosing tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.medication-dosing tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Demo label styling */
+.demo-label {
+    text-align: center;
+    margin: -15px auto 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: block;
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 4px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+    @keyframes pulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+    
+        50% {
+            transform: scale(1.1);
+        }
+    }
+  
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg), rgba(255, 255, 255, 0.2), rgba(25)
+}
+
+
+
+
+
+
+
+
+
 
 
