@@ -1,4 +1,4 @@
-// ABGenius Quick Mode Analysis
+// ABGen 1.0 Quick Mode Analysis
 // JavaScript implementation of blood gas analysis
 class ABGData {
     constructor(ph, pco2, hco3, be) {

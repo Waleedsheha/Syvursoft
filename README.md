@@ -1,10 +1,10 @@
-# ABGenius
+# ABGen 1.0
 
 ## Revolutionary Blood Gas Analysis at Your Fingertips
 
-ABGenius is a specialized medical software solution that transforms complex arterial blood gas data into actionable clinical insights, enhancing diagnostic accuracy and treatment decisions.
+ABGen 1.0 is a specialized medical software solution that transforms complex arterial blood gas data into actionable clinical insights, enhancing diagnostic accuracy and treatment decisions.
 
-![ABGenius Screenshot](images/app-screenshot.png)
+![ABGen 1.0 Screenshot](images/app-screenshot.png)
 
 ## Features
 
@@ -25,7 +25,7 @@ ABGenius is a specialized medical software solution that transforms complex arte
 ## Support
 
 If you encounter any issues or have questions:
-- [Submit an issue](https://github.com/syvursoft/ABGenius/issues/new/choose)
+- [Submit an issue](https://github.com/syvursoft/ABGen 1.0/issues/new/choose)
 - Email: Syvursoft@gmail.com
 
 ## License

@@ -4,9 +4,9 @@
 
 I'm a critical care and emergency medicine physician developing specialized medical software solutions through SyvurSoft.
 
-### 🩺 Current Project: ABGenius
+### 🩺 Current Project: ABGen 1.0
 
-ABGenius is a revolutionary blood gas analysis tool that transforms complex clinical data into actionable insights, enhancing diagnostic accuracy and treatment decisions.
+ABGen 1.0 is a revolutionary blood gas analysis tool that transforms complex clinical data into actionable insights, enhancing diagnostic accuracy and treatment decisions.
 
 ### 🔬 Expertise
 
@@ -18,7 +18,7 @@ ABGenius is a revolutionary blood gas analysis tool that transforms complex clin
 
 ### 🌐 Connect
 
-- Website: [ABGenius](https://syvursoft.github.io/ABGenius)
+- Website: [ABGen 1.0](https://waleedsheha.github.io/Syvursoft)
 - Email: Syvursoft@gmail.com
 
 ### 💻 Tech Stack

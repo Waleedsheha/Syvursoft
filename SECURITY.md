@@ -9,7 +9,7 @@
 
 ## Reporting a Vulnerability
 
-We take the security of ABGenius seriously, especially given its use in clinical settings.
+We take the security of ABGen 1.0 seriously, especially given its use in clinical settings.
 
 To report a security vulnerability:
 
@@ -22,7 +22,7 @@ We will acknowledge receipt within 48 hours and provide an estimated timeline fo
 
 ## Data Security
 
-ABGenius is designed with patient privacy in mind:
+ABGen 1.0 is designed with patient privacy in mind:
 - No patient data is transmitted to our servers
 - All analysis happens locally on the device
 - No personal health information is stored unless explicitly saved by the user

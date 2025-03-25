@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for ABGenius
+about: Suggest an idea for ABGen 1.0
 title: '[FEATURE] '
 labels: enhancement
 assignees: ''

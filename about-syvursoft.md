@@ -13,7 +13,7 @@ At SyvurSoft, we're dedicated to developing innovative medical software solution
 SyvurSoft combines:
 
 - **Clinical Expertise**: Founded by a practicing physician with real-world clinical experience
-- **User-Centered Design**: Our first application, ABGenius, is built with the clinician's workflow in mind, ensuring seamless integration into clinical practice
+- **User-Centered Design**: Our first application, ABGen 1.0, is built with the clinician's workflow in mind, ensuring seamless integration into clinical practice
 - **Educational Focus**: We're committed to not just providing answers, but enhancing understanding through interactive learning tools
 
 ## Our Values
