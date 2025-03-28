@@ -112,6 +112,67 @@ nav ul li a:hover {
     color: var(--primary-color);
 }
 
+/* Mobile menu toggle styles */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle span:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    nav {
+        display: none;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 5;
+    }
+    
+    nav.active {
+        display: block;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+    }
+}
+
 /* Hero section */
 .hero {
     background-color: var(--light-bg);
@@ -2470,11 +2531,206 @@ footer {
 }
 
 .medication-dosing th {
-    background-color: #e6f2ff;
     color: #0056b3;
     text-align: left;
     padding: 10px;
     border: 1px solid #ccc;
+}
+
+.medication-dosing td {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+}
+
+.medication-dosing tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.medication-dosing tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Improved mobile responsiveness */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    nav ul {
+        gap: 10px;
+    }
+    
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 5px 8px;
+    }
+    
+    /* Hero section */
+    .hero {
+        padding: 40px 0;
+    }
+    
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+    
+    /* Section adjustments */
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    /* Container padding */
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Quick mode section */
+    .input-container {
+        padding: 15px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .input-group label {
+        margin-bottom: 5px;
+    }
+    
+    /* Modes grid */
+    .modes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    nav {
+        display: none; /* Consider adding a mobile menu button */
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    /* Reduce padding for all sections */
+    section {
+        padding: 30px 0;
+    }
+    
+    /* Adjust font sizes */
+    p, li, .btn {
+        font-size: 0.95rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Adjust input fields */
+    input[type="number"] {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+    
+    /* Adjust modal content */
+    #resultsModal .modal-content {
+        padding: 15px;
+        margin: 10% auto;
+    }
+}
+
+/* Mobile menu toggle styles */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 24px;
+    position: relative;
+    z-index: 10;
+}
+
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    margin-bottom: 5px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle span:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    nav.mobile-active {
+        display: block;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: white;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 5;
+        padding: 10px 0;
+    }
+    
+    nav.mobile-active ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav.mobile-active ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .medication-dosing td {
@@ -2513,16 +2769,24 @@ footer {
 
 /* Pulse animation for power icon */
 @keyframes pulse {
-
-    0%,
-    100% {
+    0%, 100% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.1);
     }
 }
+    @keyframes pulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+    
+        50% {
+            transform: scale(1.1);
+        }
+    }
+  
 
 /* Additional styling for the index page */
 .power-icon {
@@ -2844,16 +3108,232 @@ footer {
 .clinical-highlight {
     font-weight: 600;
     color: var(--accent-color);
-    background: linear-gradient(120deg), rgba(255, 255, 255, 0.2), rgba(25)
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
 }
 
+/* Pulse animation for power icon */
+@keyframes pulse {
 
+    0%,
+    100% {
+        transform: scale(1);
+    }
 
+    50% {
+        transform: scale(1.1);
+    }
+}
 
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
 
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
 
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
 
+/* Pulse animation for power icon */
+@keyframes pulse {
 
+    0%,
+    100% {
+        transform: scale(1);
+    }
 
+    50% {
+        transform: scale(1.1);
+    }
+}
 
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
 
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+    @keyframes pulse {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+    
+        50% {
+            transform: scale(1.1);
+        }
+    }
+  
+
+/* Additional styling for the index page */
+.power-icon {
+    color: var(--accent-color);
+    margin: 0 5px;
+    animation: pulse 1.5s infinite;
+}
+
+.simulation-text {
+    font-weight: 600;
+    color: #0099ff;
+    text-decoration: underline;
+}
+
+.clinical-highlight {
+    font-weight: 600;
+    color: var(--accent-color);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 70%);
+    padding: 0 5px;
+    border-radius: 3px;
+}
+
+/* Pulse animation for power icon */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}

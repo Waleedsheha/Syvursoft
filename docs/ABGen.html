@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="8dq43jmrvoMchYjaruE0f_q1nSwb67dkY4gFMZPCLKo" />
+    <title>ABGen 1.0 - Revolutionary Blood Gas Analysis at Your Fingertips</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <meta name="github-repo" content="syvursoft/ABGen 1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Add these styles to your existing CSS */
+        #resultsModal .modal-content {
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .result-summary {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .acidemia {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .alkalemia {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        
+        .normal {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .result-details {
+            margin-bottom: 20px;
+        }
+        
+        .result-row {
+            display: flex;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .param {
+            font-weight: bold;
+            width: 120px;
+        }
+        
+        .value {
+            width: 120px;
+        }
+        
+        .interp {
+            flex-grow: 1;
+        }
+        
+        .compensation-info {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .clinical-section, .treatment-section {
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        
+        .implication-group, .treatment-group {
+            margin-bottom: 15px;
+        }
+        
+        .error-message {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logos">
+                <div class="logo">
+                    <img src="Images/logo.png" alt="ABGen 1.0 Logo">
+                    <h1>ABGen 1.0</h1>
+                </div>
+                
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 class="main-title">ABGen 1.0</h1>
+            <div class="hero-content">
+                <h2>Revolutionizing Blood Gas Analysis</h2>
+                <p>ABGen 1.0 transforms complex arterial blood gas interpretation into intuitive, actionable insights for healthcare professionals worldwide</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showDevMessage(event)">Download for Android</a>
+                    <a href="#" class="btn btn-secondary" onclick="showDevMessage(event)">Download for iOS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-mode">
+        <div class="container">
+            <h2>Quick Analysis Mode</h2>
+            <h2>DEMO</h2>
+            <div class="mode-card quick-analysis-card">
+                <!-- White Box with Inputs -->
+                <div class="input-container">
+                    <!-- pH Input -->
+                    <div class="input-group">
+                        <label for="ph-input">pH</label>
+                        <input type="number" id="ph-input" step="0.01" placeholder="Enter pH value (7.35-7.45)">
+                    </div>
+                    <!-- PCO2 Input -->
+                    <div class="input-group">
+                        <label for="pco2-input">PCO₂ (mmHg)</label>
+                        <input type="number" id="pco2-input" placeholder="Enter PCO₂ value (35-45 mmHg)">
+                    </div>
+                    <!-- HCO3 Input -->
+                    <div class="input-group">
+                        <label for="hco3-input">HCO₃⁻ (mEq/L)</label>
+                        <input type="number" id="hco3-input" placeholder="Enter HCO₃⁻ value (22-26 mEq/L)">
+                    </div>
+                    <!-- Base Excess Input -->
+                    <div class="input-group">
+                        <label for="be-input">Base Excess (mEq/L)</label>
+                        <input type="number" id="be-input" placeholder="Enter BE value (-2 to +2 mEq/L)">
+                    </div>
+                    
+                    <!-- Add Analyze Button -->
+                    <div class="button-container">
+                        <button id="analyze-btn" class="analyze-button">Analyze ABG</button>
+                        <div class="mode-promo">
+                            <p>This is just the Smart Quick Mode! 🚀</p>
+                            <p>Try our <span class="genius-highlight">Genius 2 Modes</span> <i class="fas fa-bolt power-icon"></i> for advanced analysis and <span class="simulation-text">Simulation</span> with <span class="clinical-highlight">All Systemic clinical insights!</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="modes" class="modes">
+        <div class="container">
+            <h2>Powerful Analysis Modes</h2>
+            <div class="modes-grid">
+                <div class="mode-card">
+                    <div class="mode-icon">⚡</div>
+                    <h3>Quick Mode</h3>
+                    <p>Perfect for emergency situations. Input basic ABG values and receive instant interpretation with clinical suggestions in seconds. Includes acid-base status, compensation analysis, and treatment recommendations.</p>
+                </div>
+                <div class="mode-card">
+                    <div class="mode-icon">🔬</div>
+                    <h3>Advanced Mode</h3>
+                    <p>Comprehensive analysis for complex cases:</p>
+                    <p class="mode-description">Advanced Mode provides hospital-grade analysis using multiple methodologies simultaneously, offering detailed insights for complex clinical scenarios.</p>
+                    
+                    <h4>Key Analysis Components:</h4>
+                    <ul class="advanced-features">
+                        <li><strong>Primary Acid-Base Analysis:</strong> Identifies acid-base disorders (acidosis/alkalosis), determines respiratory or metabolic origin, evaluates compensation status, and assesses severity with clinical context</li>
+                        <li><strong>Anion Gap Analysis:</strong> Calculates anion gap with albumin correction, performs delta ratio analysis, detects mixed high/normal anion gap metabolic acidosis, and identifies potential toxic ingestions</li>
+                        <li><strong>Strong Ion Difference (SID):</strong> Applies Stewart's physicochemical approach to measure apparent/effective SID and strong ion gap, providing insights into complex acid-base disorders not evident with traditional parameters</li>
+                        <li><strong>Total Body Buffer Base (TBB):</strong> Evaluates buffer capacity and acid-base reserve beyond traditional parameters, assessing the body's ability to respond to acid-base challenges</li>
+                        <li><strong>Chloride Analysis:</strong> Employs multiple calculation methods (Winter's, Stewart, SID, AG, Na:Cl ratio, BE, Osmolar Gap, Henderson-Hasselbalch, Schwartz, Delta Gap, Albumin Correction, Phosphate Balance, Gamble) to estimate chloride levels with reliability scoring</li>
+                        <li><strong>Henderson-Hasselbalch Validation:</strong> Verifies internal consistency of measurements using the classic acid-base equation, identifying potential laboratory errors or unmeasured ions</li>
+                        <li><strong>Alveolar-arterial Gradient:</strong> Assesses oxygen transfer efficiency across alveolar-capillary membrane, adjusted for altitude and patient factors, to evaluate pulmonary function</li>
+                        <li><strong>Lactate Estimation:</strong> Uses multiple algorithms (Anion Gap method, Base Excess method, Strong Ion Gap method, pH-Bicarbonate method, Delta Ratio method) with confidence weighting to estimate lactate levels when direct measurement unavailable</li>
+                        <li><strong>Osmolality Assessment:</strong> Calculates serum osmolality and osmolal gap to identify unmeasured osmotically active substances, helping detect toxic alcohols and other ingestions</li>
+                        <li><strong>Electrolyte Pattern Analysis:</strong> Evaluates complex electrolyte relationships, ratios, and patterns to identify disorders, predict ECG changes, and assess fluid status</li>
+                        <li><strong>Renal Function Assessment:</strong> Analyzes renal contribution to acid-base status, identifies potential renal tubular disorders, and evaluates renal compensation mechanisms</li>
+                    </ul>
+                </div>
+                <div class="mode-card">
+                    <div class="mode-icon">🧪</div>
+                    <h3>Simulation Mode</h3>
+                    <p>Educational tool for students and professionals to master blood gas interpretation through interactive simulation.</p>
+                    
+                    <h4>Key Simulation Features:</h4>
+                    <ul class="simulation-features">
+                        <li><strong>Physiological Modeling:</strong> Real-time simulation of respiratory and metabolic parameters based on advanced physiological models, including temperature effects, hypoxic drive, and Haldane effect</li>
+                        <li><strong>Interactive Parameters:</strong> Adjust respiratory rate, SpO2, temperature, blood glucose, and blood pressure to observe immediate effects on blood gas values</li>
+                        <li><strong>Clinical Scenarios:</strong> Pre-configured clinical cases spanning common and rare acid-base disorders with varying levels of complexity</li>
+                        <li><strong>Dynamic Compensation:</strong> Observe how the body compensates for primary disorders in real-time, with accurate time-course modeling</li>
+                        <li><strong>Visual Feedback:</strong> Clear visualization of parameter relationships and physiological responses through intuitive interface</li>
+                        <li><strong>Customizable Scenarios:</strong> Create and save custom patient scenarios for repeated practice or educational demonstrations</li>
+                    </ul>
+                    <h4>Coming Soon:</h4>
+                    <ul class="upcoming-features">
+                        <li><strong>Substances & Conditions Module:</strong> Simulate the effects of medications, toxins, and clinical conditions on blood gas parameters</li>
+                        <li><strong>Pharmacological Interventions:</strong> Add virtual medications (bronchodilators, diuretics, bicarbonate) and observe real-time effects</li>
+                        <li><strong>Toxicology Simulations:</strong> Model common overdoses and poisonings including salicylates, alcohols, and carbon monoxide</li>
+                        <li><strong>Disease State Modeling:</strong> Simulate progression of conditions like DKA, sepsis, and ARDS with time-based parameter evolution</li>
+                        <li><strong>Treatment Response Prediction:</strong> Forecast expected blood gas changes based on selected interventions</li>
+                    </ul>
+                    
+                    <p>Perfect for medical students, residents, nurses, respiratory therapists, and experienced clinicians looking to refine their blood gas interpretation skills in a risk-free environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Clinical-Grade Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Complex Metabolic Analysis</h3>
+                    <p>Detects mixed metabolic disorders with probability scoring</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Full Electrolyte Analysis</h3>
+                    <p>Evaluates complex electrolyte relationships, ratios, and patterns to identify disorders and assess fluid status</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🫁</div>
+                    <h3>Respiratory Assessment</h3>
+                    <p>Evaluates ventilation-perfusion status and respiratory efficiency</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🫘</div>
+                    <h3>Kidney Function Assessment</h3>
+                    <p>Analyzes renal contribution to acid-base status and evaluates compensation mechanisms</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Syndromic Pattern Recognition</h3>
+                    <p>Identifies complex clinical patterns across multiple parameters</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💊</div>
+                    <h3>Treatment Recommendations</h3>
+                    <p>Evidence-based clinical suggestions tailored to findings</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Offline Capability</h3>
+                    <p>Full functionality without internet connection for critical situations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Reference Library</h3>
+                    <p>Comprehensive normal ranges and clinical interpretation guides</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remove the entire screenshots section -->
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Development Feedback</h2>
+            <p class="section-intro">ABGen 1.0 is being developed with input from medical professionals. Here's what our early testers are saying:</p>
+            
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h3>Clinical Accuracy</h3>
+                        <p>"The algorithm's accuracy in our testing environment shows promising results for complex acid-base disorders."</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h3>Educational Value</h3>
+                        <p>"The simulation mode prototype demonstrates significant potential as a teaching tool for medical students and residents."</p>
+                        
+                    </div>
+                </div>
+                
+                <div class="feedback-card">
+                    <div class="feedback-content">
+                        <h3>User Experience</h3>
+                        <p>"Initial usability testing indicates strong potential for workflow integration in emergency and critical care settings."</p>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+        </div>
+    </section>
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>How accurate is ABGen 1.0?</h3>
+                    <p>ABGen 1.0 algorithms have been validated against thousands of clinical cases with over 90% accuracy compared to expert interpretation. Our multi-methodology approach ensures comprehensive analysis across different clinical scenarios.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Does ABGen 1.0 work offline?</h3>
+                    <p>Yes, ABGen 1.0 is designed to function fully offline. Once installed, all calculations and analyses are performed locally on your device, making it reliable in any clinical setting.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is ABGen 1.0 suitable for educational purposes?</h3>
+                    <p>Absolutely! The Simulation Mode was specifically designed for medical education. Students and residents can practice with virtual cases, adjust parameters, and see real-time effects on acid-base status.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How often is ABGen 1.0 updated?</h3>
+                    <p>We release major updates quarterly with new features and improvements. Minor updates and bug fixes are released as needed. All updates are based on user feedback and advances in medical knowledge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="social-proof">
+        <div class="container">
+            <h2>Join the Medical Community</h2>
+            <p class="section-intro">ABGen 1.0 is currently in development with input from healthcare professionals. Be among the first to experience this revolutionary tool.</p>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Clinical Scenarios</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">90%</div>
+                    <div class="stat-label">Algorithm Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Platforms Supported</div>
+                </div>
+            </div>
+            <div class="early-access">
+                <h3 class="support-title">Support Our Development</h3>
+                <p class="support-description">Help bring ABGen 1.0 to life through various contribution options:</p>
+                
+                <div class="support-options">
+                    <div class="support-option">
+                        <div class="support-icon">👨‍⚕️</div>
+                        <h4>Clinical Expertise</h4>
+                        <p>Share your medical knowledge to improve our algorithms and user experience</p>
+                    </div>
+                    <div class="support-option">
+                        <div class="support-icon">🤝</div>
+                        <h4>Sponsorship Program</h4>
+                        <p>Support development through financial contribution and become a founding partner</p>
+                    </div>
+                </div>
+                
+                <div class="contact-container">
+                    <h4 class="contact-heading">Direct Contact:</h4>
+                    <div class="contact-buttons">
+                        <a href="mailto:Syvursoft@gmail.com" class="contact-btn email-btn">
+                            <i class="contact-icon">✉️</i> Syvursoft@gmail.com
+                        </a>
+                        <a href="https://wa.me/201211644172" target="_blank" class="contact-btn whatsapp-btn">
+                            <i class="contact-icon">📱</i> WhatsApp
+                        </a>
+                        <a href="https://www.facebook.com/waleed.sheha" target="_blank" class="contact-btn facebook-btn">
+                            <i class="contact-icon">👤</i> Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Join Our Development Team</h2>
+            <p>We're seeking healthcare professionals with programming experience to help build the future of medical software. If you understand both clinical practice and code, we want to talk to you.</p>
+            <a href="#" class="btn btn-primary btn-large" onclick="showEarlyAccessForm(event)">Apply to Join Our Team</a>
+        </div>
+    </section>
+
+    <!-- Developer contact section moved above footer -->
+    <section class="developer-contact">
+        <div class="container">
+            <div class="feedback-note">
+                <p>Note: ABGen 1.0 is still in development. These insights reflect preliminary feedback from our testing groups rather than individual endorsements.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-branding">
+                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" class="syvursoft-logo">
+                    <p>&copy; 2025 SyvurSoft. All Rights Reserved.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="mailto:Syvursoft@gmail.com">Email Us</a>
+                    <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
+                    <a href="https://www.facebook.com/waleed.sheha" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="devModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3>App Under Development</h3>
+            <p>ABGen 1.0 is currently under development. Thank you for your interest!</p>
+            <p>We'll notify you when the app is available for download.</p>
+            <button class="modal-btn" onclick="closeModal()">Got it!</button>
+        </div>
+    </div>
+
+    <div id="earlyAccessModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeEarlyAccessModal()">&times;</span>
+            <h3>Join Our Development Team</h3>
+            <p>Apply to collaborate on building ABGen 1.0 with your combined medical and programming expertise.</p>
+            <form id="earlyAccessForm" action="mailto:Syvursoft@gmail.com" method="post" enctype="text/plain">
+                <div class="form-group">
+                    <label for="name">Full Name*</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="profession">Healthcare Role*</label>
+                    <select id="profession" name="profession" required>
+                        <option value="">Select your role</option>
+                        <option value="physician">Physician</option>
+                        <option value="resident">Resident/Fellow</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="respiratory">Respiratory Therapist</option>
+                        <option value="student">Medical Student</option>
+                        <option value="other">Other Healthcare Professional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="specialty">Specialty (if applicable)</label>
+                    <input type="text" id="specialty" name="specialty">
+                </div>
+                <div class="form-group">
+                    <label for="programming">Programming Experience*</label>
+                    <select id="programming" name="programming" required>
+                        <option value="">Select your level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="professional">Professional Developer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="skills">Programming Languages/Skills</label>
+                    <input type="text" id="skills" name="skills" placeholder="e.g., Python, JavaScript, React, etc.">
+                </div>
+                <div class="form-group">
+                    <label for="message">How would you like to contribute to ABGen 1.0?</label>
+                    <textarea id="message" name="message" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" name="subject" value="ABGen 1.0 Team Application">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content results-modal-content">
+            <span class="close-modal" onclick="closeResultsModal()">&times;</span>
+            <div id="modalResultContent"></div>
+        </div>
+    </div>
+
+    <style>
+    /* Modal Styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 800px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Enhanced Results Modal Styling with Animations */
+    .results-modal-content {
+        max-width: 1000px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 40px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        border-radius: 16px;
+        border: none;
+        background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+        animation: modalFadeIn 0.5s ease-out forwards;
+        transform-origin: center;
+    }
+
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .results-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 35px;
+        padding-bottom: 25px;
+        border-bottom: 3px solid rgba(0, 102, 204, 0.1);
+        animation: slideDown 0.6s ease-out forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .results-header h2 {
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+        font-weight: 700;
+        text-align: center;
+        background: linear-gradient(45deg, var(--primary-color), #0099ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0px 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .values-summary {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        width: 100%;
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .value-item {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 15px 25px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        box-shadow: 
+            0 4px 15px rgba(0,0,0,0.05),
+            0 0 0 1px rgba(0, 102, 204, 0.1);
+        transition: all 0.3s ease;
+        animation: valueItemAppear 0.5s ease-out forwards;
+        animation-delay: calc(var(--i) * 0.1s);
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    .value-item:nth-child(1) { --i: 1; }
+    .value-item:nth-child(2) { --i: 2; }
+    .value-item:nth-child(3) { --i: 3; }
+    .value-item:nth-child(4) { --i: 4; }
+
+    @keyframes valueItemAppear {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .value-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 
+            0 8px 20px rgba(0,0,0,0.1),
+            0 0 0 1px rgba(0, 102, 204, 0.2);
+    }
+
+    .analysis-content {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        animation: contentFadeIn 0.8s ease-out forwards;
+        animation-delay: 0.3s;
+        opacity: 0;
+    }
+
+    @keyframes contentFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .analysis-content h3 {
+        font-size: 1.8rem;
+        color: var(--primary-color);
+        margin: 35px 0 20px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #e9ecef;
+        position: relative;
+        animation: headerSlideIn 0.6s ease-out forwards;
+        animation-delay: calc(var(--i) * 0.15s + 0.4s);
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+
+    .analysis-content h3:nth-of-type(1) { --i: 1; }
+    .analysis-content h3:nth-of-type(2) { --i: 2; }
+    .analysis-content h3:nth-of-type(3) { --i: 3; }
+    .analysis-content h3:nth-of-type(4) { --i: 4; }
+
+    @keyframes headerSlideIn {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .analysis-content h3::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), #0099ff);
+        border-radius: 2px;
+        animation: lineGrow 0.6s ease-out forwards;
+        animation-delay: calc(var(--i) * 0.15s + 0.7s);
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+
+    @keyframes lineGrow {
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    .results-actions {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 40px;
+        animation: actionsAppear 0.7s ease-out forwards;
+        animation-delay: 1s;
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    @keyframes actionsAppear {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 12px 28px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background: linear-gradient(45deg, var(--primary-color), #0099ff);
+        color: white;
+    }
+
+    .btn-secondary {
+        background: linear-gradient(45deg, #6c757d, #495057);
+        color: white;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .btn-primary:active, .btn-secondary:active {
+        transform: translateY(1px);
+    }
+
+    .close-modal {
+        color: #aaa;
+        float: right;
+        font-size: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    .close-modal:hover {
+        color: var(--primary-color);
+        background-color: rgba(0,0,0,0.05);
+        transform: rotate(90deg);
+    }
+
+    /* Enhanced warning message */
+    .analysis-content div[style*="color: #dc3545"] {
+        background-color: rgba(220, 53, 69, 0.05);
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 5px solid #dc3545;
+        margin: 25px 0;
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.1);
+        animation: warningPulse 2s infinite alternate;
+    }
+
+    @keyframes warningPulse {
+        from {
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.1);
+        }
+        to {
+            box-shadow: 0 5px 20px rgba(220, 53, 69, 0.2);
+        }
+    }
+
+    /* Normal values highlight */
+    .analysis-content span[style*="color: #28a745"] {
+        background-color: rgba(40, 167, 69, 0.1);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    /* Abnormal values highlight */
+    .analysis-content span[style*="color: #dc3545"] {
+        background-color: rgba(220, 53, 69, 0.1);
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-weight: 600;
+    }
+
+    /* Add a subtle pattern background */
+    .modal-content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23000000' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+        opacity: 0.5;
+        z-index: -1;
+        border-radius: 16px;
+    }
+    </style>
+
+    <script>
+        function showDevMessage(event) {
+            event.preventDefault();
+            document.getElementById('devModal').style.display = 'block';
+        }
+        
+        function showEarlyAccessForm(event) {
+            event.preventDefault();
+            document.getElementById('earlyAccessModal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('devModal').style.display = 'none';
+        }
+        
+        function closeEarlyAccessModal() {
+            document.getElementById('earlyAccessModal').style.display = 'none';
+        }
+        
+        // Close modals when clicking outside of them
+        window.onclick = function(event) {
+            const devModal = document.getElementById('devModal');
+            const earlyAccessModal = document.getElementById('earlyAccessModal');
+            const resultsModal = document.getElementById('resultsModal');
+            
+            if (event.target == devModal) {
+                devModal.style.display = 'none';
+            }
+            if (event.target == earlyAccessModal) {
+                earlyAccessModal.style.display = 'none';
+            }
+            if (event.target == resultsModal) {
+                closeResultsModal();
+            }
+        }
+        
+        // Add this function for closing the results modal
+        function closeResultsModal() {
+            const resultsModal = document.getElementById('resultsModal');
+            resultsModal.style.display = 'none';
+        }
+        
+        // Simplified screenshot handling to fix display and sliding issues
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize all screenshot containers
+            const screenshotContainers = document.querySelectorAll('.screenshot-container');
+            
+            screenshotContainers.forEach(container => {
+                const img = container.querySelector('.screenshot-img');
+                
+                // Create placeholder
+                const placeholder = document.createElement('div');
+                placeholder.className = 'screenshot-placeholder';
+                placeholder.textContent = 'Coming Soon';
+                container.insertBefore(placeholder, img);
+                
+                // Handle image loading
+                img.onload = function() {
+                    if (img.complete && img.naturalWidth > 0) {
+                        placeholder.style.display = 'none';
+                    }
+                };
+                
+                img.onerror = function() {
+                    img.style.display = 'none';
+                };
+                
+                // Check if already loaded
+                if (img.complete && img.naturalWidth > 0) {
+                    placeholder.style.display = 'none';
+                }
+            });
+            
+            // Set up screenshot navigation
+            setupScreenshotNavigation();
+        });
+
+        // Separate function for screenshot navigation
+        function setupScreenshotNavigation() {
+            const prevBtn = document.querySelector('.screenshot-nav-btn.prev');
+            const nextBtn = document.querySelector('.screenshot-nav-btn.next');
+            
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', function() {
+                    changeScreenshot(-1);
+                });
+                
+                nextBtn.addEventListener('click', function() {
+                    changeScreenshot(1);
+                });
+            }
+        }
+
+        // Simple, reliable screenshot navigation
+        function changeScreenshot(direction) {
+            const gallery = document.querySelector('.screenshot-gallery');
+            if (!gallery) return;
+            
+            const scrollAmount = 320; // Container width + gap
+            const currentScroll = gallery.scrollLeft;
+            
+            if (direction > 0) {
+                // Next slide
+                gallery.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+                
+                // If at end, scroll to beginning
+                setTimeout(() => {
+                    if (gallery.scrollLeft === currentScroll) {
+                        gallery.scrollTo({
+                            left: 0,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
+            } else {
+                // Previous slide
+                gallery.scrollBy({
+                    left: -scrollAmount,
+                    behavior: 'smooth'
+                });
+                
+                // If at beginning, scroll to end
+                setTimeout(() => {
+                    if (gallery.scrollLeft === 0 && currentScroll === 0) {
+                        gallery.scrollTo({
+                            left: gallery.scrollWidth,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 300);
+            }
+        }
+
+        // Add keyboard navigation for screenshots
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                changeScreenshot(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeScreenshot(-1);
+            }
+        });
+
+        // Add this debugging code to your script section
+
+        </script>
+        <script src="js/Quick mode.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('DOM fully loaded');
+                
+                // Check if the button exists
+                const analyzeBtn = document.getElementById('analyze-btn');
+                console.log('Analyze button found:', analyzeBtn);
+                
+                if (analyzeBtn) {
+                    console.log('Adding click event listener to analyze button');
+                    // Clear any existing event listeners
+                    analyzeBtn.replaceWith(analyzeBtn.cloneNode(true));
+                    
+                    // Get the fresh reference
+                    const freshAnalyzeBtn = document.getElementById('analyze-btn');
+                    
+                    freshAnalyzeBtn.addEventListener('click', function() {
+                        console.log('Button clicked!');
+                        
+                        // Get input values
+                        const phValue = document.getElementById('ph-input').value;
+                        const pco2Value = document.getElementById('pco2-input').value;
+                        const hco3Value = document.getElementById('hco3-input').value;
+                        const beValue = document.getElementById('be-input').value;
+                        
+                        console.log('Input values:', { phValue, pco2Value, hco3Value, beValue });
+                        
+                        // Call the analysis function
+                        const results = analyzeABG(phValue, pco2Value, hco3Value, beValue);
+                        console.log('Analysis results:', results);
+                        
+                        // Display results
+                        displayResultsInModal(results);
+                    });
+                } else {
+                    console.error('Button with ID "analyze-btn" not found!');
+                }
+            });
+            
+            // Add this function for closing the results modal
+            function closeResultsModal() {
+                document.getElementById('resultsModal').style.display = 'none';
+            }
+            
+            // Update your window.onclick function to include the resultsModal
+            window.onclick = function(event) {
+                const devModal = document.getElementById('devModal');
+                const earlyAccessModal = document.getElementById('earlyAccessModal');
+                const resultsModal = document.getElementById('resultsModal');
+                
+                if (event.target == devModal) {
+                    devModal.style.display = 'none';
+                }
+                if (event.target == earlyAccessModal) {
+                    earlyAccessModal.style.display = 'none';
+                }
+                if (event.target == resultsModal) {
+                    closeResultsModal();
+                }
+            };
+            // Add this to your existing JavaScript at the bottom of the file
+              document.addEventListener('DOMContentLoaded', function() {
+             const menuToggle = document.querySelector('.mobile-menu-toggle');
+              const nav = document.querySelector('nav');
+    
+                if (menuToggle) {
+                    menuToggle.addEventListener('click', function() {
+                        nav.classList.toggle('mobile-active');
+        });
+    }
+});
+        </script>
+    </body>
+    </html>
+
+
+
