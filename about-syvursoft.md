@@ -32,4 +32,5 @@ SyvurSoft aims to become the leading developer of specialized medical software s
 
 For inquiries, collaboration opportunities, or support:
 - Email: Syvursoft@gmail.com
-- GitHub: [github.com/syvursoft](https://github.com/syvursoft)
+- GitHub: [github.com/Waleedsheha/Syvursoft](https://github.com/Waleedsheha/Syvursoft)
+

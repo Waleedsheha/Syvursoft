@@ -32,6 +32,8 @@ ABGen 1.0 is a revolutionary blood gas analysis tool that transforms complex cli
 
 If you find my medical software tools valuable, consider supporting their continued development:
 
-[![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/syvursoft)
+[![GitHub Sponsors](https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white)](https://github.com/sponsors/Waleedsheha)
 [![Patreon](https://img.shields.io/badge/Patreon-F96854?style=for-the-badge&logo=patreon&logoColor=white)](https://www.patreon.com/Dr_WaleedSheha)
 [![Polar](https://img.shields.io/badge/Polar-2C4C7C?style=for-the-badge&logo=polar&logoColor=white)](https://polar.sh/DrWaleedSheha)
+
+

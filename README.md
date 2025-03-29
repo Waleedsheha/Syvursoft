@@ -25,8 +25,10 @@ ABGen 1.0 is a specialized medical software solution that transforms complex art
 ## Support
 
 If you encounter any issues or have questions:
-- [Submit an issue](https://github.com/syvursoft/ABGen 1.0/issues/new/choose)
+- [Submit an issue](https://github.com/Waleedsheha/Syvursoft/issues/new/choose)
 - Email: Syvursoft@gmail.com
+- WhatsApp: +20 121 164 4172
+- Facebook: facebook.com/waleed.sheha
 
 ## License
 
