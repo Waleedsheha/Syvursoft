@@ -1999,3 +1999,14 @@ footer {
     }
 }
 
+/* Offline Feature Icon Styling */
+.offline-feature i {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 1em;
+    text-align: center;
+    margin-right: 0.5em;
+}
+
+
