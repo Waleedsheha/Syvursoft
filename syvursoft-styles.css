@@ -337,7 +337,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
     animation: titleGlow 3s infinite alternate;
     letter-spacing: -0.5px;
     text-align: center;
@@ -2008,5 +2007,6 @@ footer {
     text-align: center;
     margin-right: 0.5em;
 }
+
 
 
