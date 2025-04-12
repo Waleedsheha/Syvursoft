@@ -185,6 +185,8 @@
                     if (this.hostname === window.location.hostname) {
                         e.preventDefault();
                         const href = this.getAttribute('href');
+                        // Use the exact href without any browser normalization
+                        const exactPath = new URL(href, window.location.href).pathname;
                         
                         // Create transition overlay
                         const transitionElement = document.createElement('div');
@@ -197,7 +199,7 @@
                             
                             // Navigate after transition completes
                             setTimeout(() => {
-                                window.location.href = href;
+                                window.location.href = exactPath;
                             }, 500);
                         }, 10);
                     }
@@ -284,6 +286,8 @@
     <script src="js/bubbles.js"></script>
 </body>
 </html>
+
+
 
 
 
