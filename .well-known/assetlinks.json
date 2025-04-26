@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.syvursoft.abgen",
+      "sha256_cert_fingerprints": [
+        "38:66:5A:D5:C6:4E:83:5C:E0:6B:9A:FE:22:47:88:F8:0C:61:CE:C6:9D:9B:DE:58:C6:76:53:63:FF:D5:02:71"
+      ]
+    }
+  }
+]
