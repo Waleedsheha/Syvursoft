@@ -4,12 +4,250 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="8dq43jmrvoMchYjaruE0f_q1nSwb67dkY4gFMZPCLKo" />
-    <title>ABGen 1.0 - Revolutionary Blood Gases Analysis at Your Fingertips</title>
+    <title>ABGen - Revolutionary Blood Gases Analysis at Your Fingertips</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico">
-    <meta name="github-repo" content="syvursoft/ABGen 1.0">
+    <meta name="github-repo" content="syvursoft/ABGen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Learning Mode Section Styling */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .lesson-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .lesson-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 2rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .lesson-icon i {
+            font-size: 1.8rem;
+            animation: pulse-icon 2s infinite alternate;
+        }
+
+        .lesson-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* FAQ Section Styling */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Stats Container Styling */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: pulse-icon 2s infinite alternate;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Support Options Styling */
+        .early-access {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        .support-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .support-description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .support-option {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .support-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .support-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: white;
+            animation: pulse-icon 2s infinite alternate;
+        }
+
+        .support-option h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .support-option p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact Container Styling */
+        .contact-container {
+            text-align: center;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-heading {
+            margin-bottom: 15px;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-btn i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Development Status Styling */
+        .feedback-note {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Make sure the status badge matches the modern style */
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-left: 10px;
+            box-shadow: 0 3px 8px rgba(66, 133, 244, 0.3);
+            animation: badge-glow 3s infinite alternate;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
         /* Add these styles to your existing CSS */
         #resultsModal .modal-content {
             max-width: 700px;
@@ -509,6 +747,7 @@
             overflow: hidden;
             background: linear-gradient(135deg, #4285f4 0%, #7c4dff 100%);
             color: white;
+            margin: 0;
         }
 
         .section-background {
@@ -1161,8 +1400,8 @@
         <div class="container">
             <div class="logos">
                 <div class="logo">
-                    <img src="Images/logo.png" alt="ABGen 1.0 Logo">
-                    <h1>ABGen 1.0</h1>
+                    <img src="Images/logo.png" alt="ABGen Logo">
+                    <h1>ABGen</h1>
                 </div>
 
             </div>
@@ -1181,25 +1420,23 @@
         </div>
     </header>
 
-    <section class="hero modern-hero">
+    <section class="hero modern-hero" style="margin-bottom: 0;">
         <div class="hero-background">
             <div class="animated-bg"></div>
             <div class="pattern-overlay"></div>
         </div>
         <div class="container">
             <div class="hero-content-wrapper">
-                <div class="hero-badge">
-                    <span class="beta-badge"><i class="fas fa-flask"></i> Beta Testing</span>
-                </div>
-                <h1 class="main-title">ABGen 1.0</h1>
+                <!-- App now released -->
+                <h1 class="main-title">ABGen</h1>
                 <div class="hero-content">
                     <h2 class="hero-subtitle">Revolutionizing Blood Gases Analysis</h2>
-                    <p class="hero-description">ABGen 1.0 transforms complex arterial blood gases interpretation into intuitive, actionable insights for healthcare professionals worldwide</p>
+                    <p class="hero-description" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">ABGen transforms complex arterial blood gases interpretation into intuitive, actionable insights for healthcare professionals worldwide</p>
 
                     <div class="benefits-grid">
                         <div class="benefit-item">
-                            <i class="fas fa-bug"></i>
-                            <span>Report Bugs</span>
+                            <i class="fas fa-star"></i>
+                            <span>Rate the App</span>
                         </div>
                         <div class="benefit-item">
                             <i class="fas fa-lightbulb"></i>
@@ -1217,12 +1454,8 @@
 
                     <div class="cta-buttons">
                         <div class="button-container">
-                            <span class="button-tag android-tag"><i class="fab fa-android"></i> For Android Users</span>
-                            <a href="https://play.google.com/store/apps/details?id=com.syvursoft.abgen" class="btn btn-primary" target="_blank">Download Test Version</a>
-                        </div>
-                        <div class="button-container">
-                            <span class="button-tag web-tag"><i class="fas fa-globe"></i> For Web Users</span>
-                            <a href="https://play.google.com/apps/testing/com.syvursoft.abgen" class="btn btn-secondary" target="_blank">Join Beta Testing Program</a>
+                            <span class="button-tag android-tag"><i class="fab fa-android"></i> Available Now</span>
+                            <a href="https://play.google.com/store/apps/details?id=com.syvursoft.abgen" class="btn btn-primary" target="_blank">Download Now</a>
                         </div>
                     </div>
                 </div>
@@ -1232,7 +1465,7 @@
 
 
 
-    <section class="quick-mode modern-section">
+    <section class="quick-mode modern-section" style="margin-top: -1px;">
         <div class="section-background">
             <div class="bg-pattern"></div>
         </div>
@@ -1283,7 +1516,129 @@
             </div>
         </div>
     </section>
-    <section id="modes" class="modes modern-section">
+    <section id="learning" class="learning-mode modern-section" style="margin-top: -1px;">
+        <div class="section-background">
+            <div class="bg-pattern"></div>
+        </div>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Learning Mode</h2>
+                <p class="section-intro" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Master the art and science of blood gas interpretation with our comprehensive 12-lesson educational program. From basic concepts to advanced clinical applications, our structured curriculum helps healthcare professionals build confidence in ABG analysis.</p>
+            </div>
+
+            <div class="lessons-grid">
+                <!-- Lesson 1 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Acid-Base Balance</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Introduction to pH, acids, bases, and the fundamental concepts of acid-base physiology in the human body.</p>
+                </div>
+
+                <!-- Lesson 2 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">ABG Parameters</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Understanding arterial blood gas components, normal ranges, and the clinical significance of each parameter.</p>
+                </div>
+
+                <!-- Lesson 3 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-lungs"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Respiratory Disorders</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Exploring respiratory acidosis and alkalosis, their causes, clinical presentations, and diagnostic features.</p>
+                </div>
+
+                <!-- Lesson 4 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Metabolic Disorders</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Understanding metabolic acidosis and alkalosis, their etiologies, clinical manifestations, and laboratory findings.</p>
+                </div>
+
+                <!-- Lesson 5 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Compensation</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">How the body compensates for acid-base imbalances through respiratory and renal mechanisms.</p>
+                </div>
+
+                <!-- Lesson 6 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-random"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Mixed Disorders</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Identifying and analyzing complex acid-base disturbances with multiple primary disorders.</p>
+                </div>
+
+                <!-- Lesson 7 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Henderson-Hasselbalch</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Understanding the mathematical relationship between pH, bicarbonate, and carbon dioxide in blood.</p>
+                </div>
+
+                <!-- Lesson 8 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Anion Gap</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Calculating and interpreting anion gap to differentiate causes of metabolic acidosis.</p>
+                </div>
+
+                <!-- Lesson 9 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Strong Ion Difference</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Exploring the Stewart approach to acid-base balance through physicochemical principles.</p>
+                </div>
+
+                <!-- Lesson 10 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Oxygen in ABG</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Understanding oxygen measurements in ABG and their clinical interpretation.</p>
+                </div>
+
+                <!-- Lesson 11 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Treatment Principles</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">General principles and specific approaches for managing different acid-base disorders.</p>
+                </div>
+
+                <!-- Lesson 12 -->
+                <div class="lesson-card glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div class="lesson-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="lesson-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Clinical Cases</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Applying ABG analysis skills to real-world clinical scenarios with step-by-step analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modes" class="modes modern-section" style="margin-top: -1px;">
         <div class="section-background">
             <div class="bg-pattern"></div>
         </div>
@@ -1351,56 +1706,56 @@
         </div>
     </section>
 
-    <section id="features" class="features modern-section">
+    <section id="features" class="features modern-section" style="margin-top: -1px;">
         <div class="section-background">
             <div class="bg-pattern"></div>
         </div>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Clinical-Grade Features</h2>
+                <h2 class="section-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Clinical-Grade Features</h2>
             </div>
             <div class="feature-grid">
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3 class="feature-title">Complex Metabolic Analysis</h3>
-                    <p>Detects mixed metabolic disorders with probability scoring</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Complex Metabolic Analysis</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Detects mixed metabolic disorders with probability scoring</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
-                    <h3 class="feature-title">Full Electrolyte Analysis</h3>
-                    <p>Evaluates complex electrolyte relationships, ratios, and patterns to identify disorders and assess fluid status</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Full Electrolyte Analysis</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Evaluates complex electrolyte relationships, ratios, and patterns to identify disorders and assess fluid status</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-lungs"></i></div>
-                    <h3 class="feature-title">Respiratory Assessment</h3>
-                    <p>Evaluates ventilation-perfusion status and respiratory efficiency</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Respiratory Assessment</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Evaluates ventilation-perfusion status and respiratory efficiency</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon">
                         <i class="fas fa-tint"></i>
                     </div>
-                    <h3 class="feature-title">Kidney Function Assessment</h3>
-                    <p>Analyzes renal contribution to acid-base status and evaluates compensation mechanisms</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Kidney Function Assessment</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Analyzes renal contribution to acid-base status and evaluates compensation mechanisms</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-sync-alt"></i></div>
-                    <h3 class="feature-title">Syndromic Pattern Recognition</h3>
-                    <p>Identifies complex clinical patterns across multiple parameters</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Syndromic Pattern Recognition</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Identifies complex clinical patterns across multiple parameters</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-pills"></i></div>
-                    <h3 class="feature-title">Treatment Recommendations</h3>
-                    <p>Evidence-based clinical suggestions tailored to findings</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Treatment Recommendations</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Evidence-based clinical suggestions tailored to findings</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3 class="feature-title">Offline Capability</h3>
-                    <p>Full functionality without internet connection for critical situations</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Offline Capability</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Full functionality without internet connection for critical situations</p>
                 </div>
                 <div class="feature-card glass-card">
                     <div class="feature-icon"><i class="fas fa-book-medical"></i></div>
-                    <h3 class="feature-title">Reference Library</h3>
-                    <p>Comprehensive normal ranges and clinical interpretation guides</p>
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Reference Library</h3>
+                    <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Comprehensive normal ranges and clinical interpretation guides</p>
                 </div>
             </div>
         </div>
@@ -1408,14 +1763,14 @@
 
     <!-- Remove the entire screenshots section -->
 
-    <section class="testimonials modern-section">
+    <section class="testimonials modern-section" style="margin-top: -1px;">
         <div class="section-background">
             <div class="bg-pattern"></div>
         </div>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Development Feedback</h2>
-                <p class="section-intro">ABGen 1.0 is being developed with input from medical professionals. Here's what our early testers are saying:</p>
+                <h2 class="section-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">User Feedback</h2>
+                <p class="section-intro" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">ABGen has been developed with input from medical professionals. Here's what our users are saying:</p>
             </div>
 
             <div class="feedback-grid">
@@ -1424,8 +1779,8 @@
                         <i class="fas fa-stethoscope"></i>
                     </div>
                     <div class="feedback-content">
-                        <h3 class="feedback-title">Clinical Accuracy</h3>
-                        <p>"The algorithm's accuracy in our testing environment shows promising results for complex acid-base disorders."</p>
+                        <h3 class="feedback-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Clinical Accuracy</h3>
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">"The algorithm's accuracy in clinical practice is impressive, providing reliable analysis for complex acid-base disorders."</p>
                     </div>
                 </div>
 
@@ -1434,8 +1789,8 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="feedback-content">
-                        <h3 class="feedback-title">Educational Value</h3>
-                        <p>"The simulation mode prototype demonstrates significant potential as a teaching tool for medical students and residents."</p>
+                        <h3 class="feedback-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Educational Value</h3>
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">"The simulation mode is an excellent teaching tool for our medical students and residents. It has become an essential part of our curriculum."</p>
                     </div>
                 </div>
 
@@ -1444,68 +1799,91 @@
                         <i class="fas fa-laptop-medical"></i>
                     </div>
                     <div class="feedback-content">
-                        <h3 class="feedback-title">User Experience</h3>
-                        <p>"Initial usability testing indicates strong potential for workflow integration in emergency and critical care settings."</p>
+                        <h3 class="feedback-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">User Experience</h3>
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">"The app integrates seamlessly into our workflow in the emergency department. It's become an indispensable tool for our critical care team."</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="faq">
+    <section class="faq modern-section" style="margin-top: -1px;">
+        <div class="section-background">
+            <div class="bg-pattern"></div>
+        </div>
         <div class="container">
-            <h2>Frequently Asked Questions</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Frequently Asked Questions</h2>
+            </div>
             <div class="faq-grid">
-                <div class="faq-item">
-                    <h3>How accurate is ABGen 1.0?</h3>
-                    <p>ABGen 1.0 algorithms have been validated against thousands of clinical cases with over 90% accuracy compared to expert interpretation. Our multi-methodology approach ensures comprehensive analysis across different clinical scenarios.</p>
+                <div class="faq-item glass-card">
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">How accurate is ABGen?</h3>
+                    <div class="faq-answer" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; margin-top: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); margin: 0;">ABGen algorithms have been validated against thousands of clinical cases with over 90% accuracy compared to expert interpretation. Our multi-methodology approach ensures comprehensive analysis across different clinical scenarios.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h3>Does ABGen 1.0 work offline?</h3>
-                    <p>Yes, ABGen 1.0 is designed to function fully offline. Once installed, all calculations and analyses are performed locally on your device, making it reliable in any clinical setting.</p>
+                <div class="faq-item glass-card">
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Does ABGen work offline?</h3>
+                    <div class="faq-answer" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; margin-top: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); margin: 0;">Yes, ABGen is designed to function fully offline. Once installed, all calculations and analyses are performed locally on your device, making it reliable in any clinical setting.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h3>Is ABGen 1.0 suitable for educational purposes?</h3>
-                    <p>Absolutely! The Simulation Mode was specifically designed for medical education. Students and residents can practice with virtual cases, adjust parameters, and see real-time effects on acid-base status.</p>
+                <div class="faq-item glass-card">
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Is ABGen suitable for educational purposes?</h3>
+                    <div class="faq-answer" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; margin-top: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); margin: 0;">Absolutely! The Simulation Mode was specifically designed for medical education. Students and residents can practice with virtual cases, adjust parameters, and see real-time effects on acid-base status.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h3>How often is ABGen 1.0 updated?</h3>
-                    <p>We release major updates quarterly with new features and improvements. Minor updates and bug fixes are released as needed. All updates are based on user feedback and advances in medical knowledge.</p>
+                <div class="faq-item glass-card">
+                    <h3 class="feature-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">How often is ABGen updated?</h3>
+                    <div class="faq-answer" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; margin-top: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <p style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); margin: 0;">We release major updates quarterly with new features and improvements. Minor updates and bug fixes are released as needed. All updates are based on user feedback and advances in medical knowledge.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="social-proof">
+    <section id="about" class="social-proof modern-section" style="margin-top: -1px;">
+        <div class="section-background">
+            <div class="bg-pattern"></div>
+        </div>
         <div class="container">
-            <h2>Join the Medical Community</h2>
-            <p class="section-intro">ABGen 1.0 is currently in development with input from healthcare professionals. Be among the first to experience this revolutionary tool.</p>
+            <div class="section-header">
+                <h2 class="section-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Join the Medical Community</h2>
+                <p class="section-intro" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">ABGen is now available on the Google Play Store! Join healthcare professionals already using this revolutionary tool.</p>
+            </div>
 
-            <div class="stats-container">
+            <div class="stats-container glass-card" style="background: rgba(0, 0, 0, 0.2); padding: 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);">
                 <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Clinical Scenarios</div>
+                    <div class="stat-number" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">500+</div>
+                    <div class="stat-label" style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Clinical Scenarios</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">90%</div>
-                    <div class="stat-label">Algorithm Accuracy</div>
+                    <div class="stat-number" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">90%</div>
+                    <div class="stat-label" style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Algorithm Accuracy</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">3</div>
-                    <div class="stat-label">Platforms Supported</div>
+                    <div class="stat-number" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">3</div>
+                    <div class="stat-label" style="color: white; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">Platforms Supported</div>
                 </div>
             </div>
-            <div class="early-access">
-                <h3 class="support-title">Support Our Development</h3>
-                <p class="support-description">Help bring ABGen 1.0 to life through various contribution options:</p>
+            <div class="early-access glass-card">
+                <h3 class="support-title" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Support Our Continued Development</h3>
+                <p class="support-description" style="color: white; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);">Help us improve ABGen through various contribution options:</p>
 
                 <div class="support-options">
                     <div class="support-option">
-                        <div class="support-icon">👨‍⚕️</div>
+                        <div class="support-icon"><i class="fas fa-user-md"></i></div>
                         <h4>Clinical Expertise</h4>
                         <p>Share your medical knowledge to improve our algorithms and user experience</p>
                     </div>
                     <div class="support-option">
-                        <div class="support-icon">🤝</div>
+                        <div class="support-icon"><i class="fas fa-code"></i></div>
+                        <h4>Technical Contributions</h4>
+                        <p>Help improve ABGen by contributing code, reporting bugs, or suggesting features on our GitHub repository</p>
+                    </div>
+                    <div class="support-option">
+                        <div class="support-icon"><i class="fas fa-handshake"></i></div>
                         <h4>Sponsorship Program</h4>
                         <p>Support development through financial contribution and become a founding partner</p>
                     </div>
@@ -1515,13 +1893,13 @@
                     <h4 class="contact-heading">Direct Contact:</h4>
                     <div class="contact-buttons">
                         <a href="mailto:Syvursoft@gmail.com" class="contact-btn email-btn">
-                            <i class="contact-icon">✉️</i> Syvursoft@gmail.com
+                            <i class="fas fa-envelope"></i> Syvursoft@gmail.com
                         </a>
                         <a href="https://wa.me/201211644172" target="_blank" class="contact-btn whatsapp-btn">
-                            <i class="contact-icon">📱</i> WhatsApp
+                            <i class="fab fa-whatsapp"></i> WhatsApp
                         </a>
-                        <a href="https://www.facebook.com/waleed.sheha" target="_blank" class="contact-btn facebook-btn">
-                            <i class="contact-icon">👤</i> Facebook
+                        <a href="https://www.facebook.com/profile.php?id=61575535048759" target="_blank" class="contact-btn facebook-btn">
+                            <i class="fab fa-facebook"></i> SyvurSoft
                         </a>
                     </div>
                 </div>
@@ -1529,31 +1907,46 @@
         </div>
     </section>
 
-    <section class="cta-section">
+    <section class="cta-section modern-section" style="margin-top: -1px;">
+        <div class="section-background">
+            <div class="bg-pattern"></div>
+        </div>
         <div class="container">
-            <h2>Join Our Development Team</h2>
-            <p>We're seeking healthcare professionals with programming experience to help build the future of medical software. If you understand both clinical practice and code, we want to talk to you.</p>
-            <a href="#" class="btn btn-primary btn-large" onclick="showEarlyAccessForm(event)">Apply to Join Our Team</a>
+            <div class="section-header">
+                <h2 class="section-title">Join Our Development Team</h2>
+            </div>
+            <div class="glass-card">
+                <p>We're seeking healthcare professionals with programming experience to help enhance ABGen and build the future of medical software. If you understand both clinical practice and code, we want to talk to you.</p>
+                <div class="button-container" style="text-align: center; margin-top: 20px;">
+                    <a href="#" class="analyze-button" onclick="showEarlyAccessForm(event)"><i class="fas fa-users"></i> Apply to Join Our Team</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Developer contact section moved above footer -->
-    <section class="developer-contact">
+    <section class="developer-contact modern-section" style="margin-top: -1px;">
+        <div class="section-background">
+            <div class="bg-pattern"></div>
+        </div>
         <div class="container">
-            <div class="feedback-note">
+            <div class="section-header">
+                <h2 class="section-title">Development Status</h2>
+            </div>
+            <div class="feedback-note glass-card">
                 <div class="development-status">
-                    <div class="status-icon"><i class="fas fa-flask"></i></div>
+                    <div class="status-icon"><i class="fas fa-check-circle"></i></div>
                     <div class="status-content">
-                        <h3>Development Status: <span class="status-badge">Beta Testing</span></h3>
-                        <p>ABGen 1.0 is currently in active beta testing. The app is functional but may contain bugs and is continuously being improved based on user feedback. All clinical insights and analysis features are being refined with input from healthcare professionals worldwide.</p>
-                        <p>We welcome your participation in shaping this revolutionary tool for the medical community!</p>
+                        <h3>Status: <span class="status-badge">Released</span></h3>
+                        <p>ABGen is now officially released and available on the Google Play Store! The app is fully functional and ready for use in clinical settings. We continue to improve the app based on user feedback and are working on adding new features.</p>
+                        <p>We welcome your feedback to help us make ABGen even better for the medical community!</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer style="margin-top: -1px; position: relative; z-index: 10; background: linear-gradient(135deg, #4285f4 0%, #7c4dff 100%);">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-branding">
@@ -1566,7 +1959,7 @@
                     <a href="terms.html">Terms of Service</a>
                     <a href="mailto:Syvursoft@gmail.com">Email Us</a>
                     <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
-                    <a href="https://www.facebook.com/waleed.sheha" target="_blank">Facebook</a>
+                    <a href="https://www.facebook.com/profile.php?id=61575535048759" target="_blank">Facebook</a>
                 </div>
             </div>
         </div>
@@ -1575,9 +1968,9 @@
     <div id="devModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3>App Under Development</h3>
-            <p>ABGen 1.0 is currently under development. Thank you for your interest!</p>
-            <p>We'll notify you when the app is available for download.</p>
+            <h3>ABGen Now Available</h3>
+            <p>ABGen is now available on the Google Play Store. Thank you for your interest!</p>
+            <p>Download it today and experience the revolution in blood gas analysis.</p>
             <button class="modal-btn" onclick="closeModal()">Got it!</button>
         </div>
     </div>
@@ -1586,7 +1979,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeEarlyAccessModal()">&times;</span>
             <h3>Join Our Development Team</h3>
-            <p>Apply to collaborate on building ABGen 1.0 with your combined medical and programming expertise.</p>
+            <p>Apply to collaborate on enhancing ABGen with your combined medical and programming expertise.</p>
             <form id="earlyAccessForm" action="mailto:Syvursoft@gmail.com" method="post" enctype="text/plain">
                 <div class="form-group">
                     <label for="name">Full Name*</label>
@@ -1627,11 +2020,11 @@
                     <input type="text" id="skills" name="skills" placeholder="e.g., Python, JavaScript, React, etc.">
                 </div>
                 <div class="form-group">
-                    <label for="message">How would you like to contribute to ABGen 1.0?</label>
+                    <label for="message">How would you like to contribute to ABGen?</label>
                     <textarea id="message" name="message" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="subject" value="ABGen 1.0 Team Application">
+                    <input type="hidden" name="subject" value="ABGen Team Application">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit Application</button>
             </form>

@@ -25,8 +25,6 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -67,7 +65,7 @@
                     <div class="spotlight-beam"></div>
                 </div>
                 <div class="product-content">
-                    <h3 class="product-title">ABGen 1.0</h3>
+                    <h3 class="product-title">ABGen</h3>
                     <div class="product-badge pulse">Latest Release</div>
                     <div class="product-tagline">Revolutionizing Clinical Decision Making</div>
                     <p>Revolutionary blood gas analysis tool that transforms complex arterial blood gas data into actionable clinical insights.</p>
@@ -151,14 +149,14 @@
                     <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" class="syvursoft-logo">
                     <p>&copy; 2025 SyvurSoft. All Rights Reserved.</p>
                 </div>
-                
+
                 <div class="footer-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                     <a href="about.html">About Us</a>
                     <a href="mailto:Syvursoft@gmail.com">Email Us</a>
                     <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
-                    <a href="https://www.facebook.com/waleed.sheha" target="_blank">Facebook</a>
+                    <a href="https://www.facebook.com/profile.php?id=61575535048759" target="_blank">Facebook</a>
                 </div>
             </div>
         </div>
@@ -169,16 +167,16 @@
             // Mobile menu toggle
             const menuToggle = document.querySelector('.mobile-menu-toggle');
             const nav = document.querySelector('nav');
-            
+
             if (menuToggle) {
                 menuToggle.addEventListener('click', function() {
                     nav.classList.toggle('mobile-active');
                 });
             }
-            
+
             // Page transition effect
             const pageLinks = document.querySelectorAll('a[href]:not([href^="#"])');
-            
+
             pageLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     // Only apply transition for internal links
@@ -187,16 +185,16 @@
                         const href = this.getAttribute('href');
                         // Use the exact href without any browser normalization
                         const exactPath = new URL(href, window.location.href).pathname;
-                        
+
                         // Create transition overlay
                         const transitionElement = document.createElement('div');
                         transitionElement.className = 'page-transition';
                         document.body.appendChild(transitionElement);
-                        
+
                         // Trigger transition
                         setTimeout(() => {
                             transitionElement.classList.add('active');
-                            
+
                             // Navigate after transition completes
                             setTimeout(() => {
                                 window.location.href = exactPath;
@@ -205,36 +203,36 @@
                     }
                 });
             });
-            
+
             // Handle page load transition
             window.addEventListener('pageshow', function(e) {
                 if (e.persisted) {
                     const transitionElement = document.querySelector('.page-transition');
                     if (transitionElement) {
                         transitionElement.classList.add('exit');
-                        
+
                         setTimeout(() => {
                             transitionElement.remove();
                         }, 500);
                     }
                 }
             });
-            
+
             // Smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
                     if (targetId === '#') return;
-                    
+
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 80,
                             behavior: 'smooth'
                         });
-                        
+
                         // Close mobile menu if open
                         if (nav.classList.contains('mobile-active')) {
                             nav.classList.remove('mobile-active');
@@ -242,29 +240,29 @@
                     }
                 });
             });
-            
+
             // Animate elements when they come into view
             const animateOnScroll = function() {
                 const elements = document.querySelectorAll('.animate-on-scroll');
                 console.log("Found " + elements.length + " elements to animate");
-                
+
                 elements.forEach(element => {
                     const elementPosition = element.getBoundingClientRect().top;
                     const screenPosition = window.innerHeight / 1.2;
-                    
+
                     if (elementPosition < screenPosition) {
                         element.classList.add('visible');
                         console.log("Element animated:", element);
                     }
                 });
             };
-            
+
             // Initialize animations
             window.addEventListener('scroll', animateOnScroll);
-            
+
             // Run once on page load (with slight delay to ensure DOM is fully rendered)
             setTimeout(animateOnScroll, 100);
-            
+
             // Scroll progress indicator
             window.addEventListener('scroll', function() {
                 const winScroll = document.body.scrollTop || document.documentElement.scrollTop;

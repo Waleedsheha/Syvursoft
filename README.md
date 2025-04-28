@@ -68,7 +68,7 @@ ABGen 1.0 is currently in **Beta Testing**. The app is functional but may contai
 At SyvurSoft, we're dedicated to revolutionizing healthcare by empowering physicians with cutting-edge software solutions. ABGen 1.0 is the first in our comprehensive ecosystem of medical applications designed to enhance clinical practice, streamline workflows, and elevate patient care.
 
 
-Join Us or Contact me 
+Join Us or Contact me
 
 - [Google Play Store](In Testing)
 https://waleedsheha.github.io/Syvursoft
@@ -87,7 +87,7 @@ https://waleedsheha.github.io/Syvursoft
 
 - Email: Syvursoft@gmail.com
 - WhatsApp: +20 121 164 4172
-- Facebook: facebook.com/waleed.sheha
+- Facebook: facebook.com/profile.php?id=61575535048759
 
 
 

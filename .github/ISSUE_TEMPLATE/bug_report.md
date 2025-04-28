@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help improve ABGen 1.0
+about: Create a report to help improve ABGen
 title: '[BUG] '
 labels: bug
 assignees: ''

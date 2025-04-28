@@ -9,7 +9,7 @@
 
 ## Reporting a Vulnerability
 
-We take the security of ABGen 1.0 seriously, especially given its use in clinical settings.
+We take the security of ABGen seriously, especially given its use in clinical settings.
 
 To report a security vulnerability:
 
