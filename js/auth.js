@@ -203,78 +203,22 @@ if (resetForm) {
 }
 
 // Google Sign-in
+// This function is now a wrapper around the implementation in google-auth.js
 function signInWithGoogle() {
     console.log('Google sign-in function called');
     try {
-        // Create Google auth provider
-        const provider = new firebase.auth.GoogleAuthProvider();
-        console.log('Google provider created');
-
-        // Add scopes for better user data
-        provider.addScope('profile');
-        provider.addScope('email');
-
-        // Set custom parameters
-        provider.setCustomParameters({
-            'prompt': 'select_account'
-        });
-
-        // Try redirect auth first (more reliable than popup)
-        auth.signInWithRedirect(provider)
-            .catch(error => {
-                console.error('Redirect auth failed, trying popup:', error);
-                // If redirect fails, try popup
-                return auth.signInWithPopup(provider);
-            })
-            .then((result) => {
-                if (!result) return; // Skip if this is after redirect initiation
-
-                console.log('Google sign-in successful', result);
-                // Check if user is new
-                const isNewUser = result.additionalUserInfo.isNewUser;
-                console.log('Is new user:', isNewUser);
-
-                // If new user, create profile in Firestore
-                if (isNewUser && db) {
-                    console.log('Creating user profile in Firestore');
-                    return db.collection('users').doc(result.user.uid).set({
-                        name: result.user.displayName,
-                        email: result.user.email,
-                        createdAt: new Date(),
-                        specialty: ''
-                    });
-                }
-            })
-            .then(() => {
-                // This might not execute if we're doing a redirect
-                const user = auth.currentUser;
-                if (user) {
-                    console.log('Redirecting to profile page');
+        // Use the implementation from google-auth.js
+        window.googleAuth.signInWithGoogle()
+            .then(result => {
+                if (result && result.user) {
+                    console.log('Google sign-in successful, redirecting to profile page');
                     window.location.href = 'profile.html';
                 }
             })
-            .catch((error) => {
+            .catch(error => {
                 console.error('Google sign-in error:', error);
-                console.error('Error code:', error.code);
-                console.error('Error message:', error.message);
-
-                let errorMessage = 'Failed to sign in with Google. ';
-
-                // Handle specific error cases
-                if (error.code === 'auth/popup-blocked') {
-                    errorMessage += 'Please allow popups for this website and try again.';
-                } else if (error.code === 'auth/popup-closed-by-user') {
-                    errorMessage += 'Sign-in was cancelled. Please try again.';
-                } else if (error.code === 'auth/cancelled-popup-request') {
-                    errorMessage += 'Another sign-in attempt is in progress. Please wait.';
-                } else if (error.code === 'auth/network-request-failed') {
-                    errorMessage += 'Network error. Please check your connection and try again.';
-                } else {
-                    errorMessage += 'Error: ' + error.message;
-                }
-
                 if (authError) {
-                    showError(authError, errorMessage);
+                    showError(authError, error.message || 'Failed to sign in with Google. Please try again.');
                 }
             });
     } catch (error) {
@@ -286,32 +230,28 @@ function signInWithGoogle() {
 }
 
 // Handle redirect result
-auth.getRedirectResult().then((result) => {
-    if (result.user) {
-        console.log('Redirect result received', result);
-        // Check if user is new
-        const isNewUser = result.additionalUserInfo.isNewUser;
+// This is now handled by google-auth.js, but we'll keep this for compatibility
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if we're on a page that needs to handle redirect results
+    if (window.location.pathname.includes('login.html') ||
+        window.location.pathname.includes('signup.html') ||
+        window.location.pathname.includes('index.html')) {
 
-        // If new user, create profile in Firestore
-        if (isNewUser && db) {
-            console.log('Creating user profile in Firestore after redirect');
-            db.collection('users').doc(result.user.uid).set({
-                name: result.user.displayName,
-                email: result.user.email,
-                createdAt: new Date(),
-                specialty: ''
-            }).then(() => {
-                window.location.href = 'profile.html';
+        // Use the implementation from google-auth.js
+        window.googleAuth.handleGoogleRedirectResult()
+            .then(result => {
+                if (result && result.user) {
+                    console.log('Google redirect sign-in successful, redirecting to profile page');
+                    window.location.href = 'profile.html';
+                }
+            })
+            .catch(error => {
+                console.error('Google redirect result error:', error);
+                // Only show error if we're on the signup or login page
+                if (authError && (window.location.pathname.includes('signup.html') || window.location.pathname.includes('login.html'))) {
+                    showError(authError, error.message || 'Failed to complete Google sign-in. Please try again.');
+                }
             });
-        } else {
-            window.location.href = 'profile.html';
-        }
-    }
-}).catch((error) => {
-    console.error('Redirect result error:', error);
-    // Only show error if we're on the signup or login page
-    if (authError && (window.location.pathname.includes('signup.html') || window.location.pathname.includes('login.html'))) {
-        showError(authError, 'Failed to complete Google sign-in. Please try again.');
     }
 });
 
