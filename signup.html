@@ -121,40 +121,12 @@
                     <button id="google-signup" class="btn btn-social btn-google">
                         <i class="fab fa-google"></i> Google
                     </button>
-                    <button id="direct-google-signup" class="btn btn-social btn-google" style="margin-top: 10px; background-color: #4285f4; color: white;">
-                        <i class="fab fa-google"></i> Direct Google Signup
-                    </button>
                 </div>
+                <div id="google-status" style="margin-top: 10px; display: none;"></div>
                 <div id="auth-error" class="auth-error" style="display: none;"></div>
                 <p class="auth-note" style="font-size: 0.8rem; margin-top: 10px; color: #666;">Note: You may need to allow popups for this site to use Google sign-up.</p>
+                <p><a href="google-test.html" style="color: #0056b3;">Try our Google authentication test page</a></p>
             </div>
-
-            <script>
-                document.getElementById('direct-google-signup').addEventListener('click', function() {
-                    // Create a Google Auth Provider
-                    const provider = new firebase.auth.GoogleAuthProvider();
-
-                    // Add scopes for better user data
-                    provider.addScope('profile');
-                    provider.addScope('email');
-
-                    // Set custom parameters for better UX
-                    provider.setCustomParameters({
-                        'prompt': 'select_account'
-                    });
-
-                    // Sign in with popup
-                    firebase.auth().signInWithPopup(provider)
-                        .then((result) => {
-                            console.log('Direct Google sign-up successful!', result);
-                            window.location.href = 'profile.html';
-                        })
-                        .catch((error) => {
-                            console.error('Direct Google sign-up error:', error);
-                            alert('Google sign-up failed: ' + error.message);
-                        });
-                });
-            </script>
 
             <div class="auth-footer">
                 <p>Already have an account? <a href="login.html">Login</a></p>

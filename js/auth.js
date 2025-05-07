@@ -202,58 +202,77 @@ if (resetForm) {
     });
 }
 
-// Google Sign-in
-// This function is now a wrapper around the implementation in google-auth.js
+// Simple Google Sign-in
 function signInWithGoogle() {
     console.log('Google sign-in function called');
+
+    // Show status
+    const statusElement = document.getElementById('google-status');
+    if (statusElement) {
+        statusElement.textContent = 'Connecting to Google...';
+        statusElement.style.display = 'block';
+    }
+
     try {
-        // Use the implementation from google-auth.js
-        window.googleAuth.signInWithGoogle()
-            .then(result => {
-                if (result && result.user) {
-                    console.log('Google sign-in successful, redirecting to profile page');
+        // Create Google provider
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // Add scopes
+        provider.addScope('profile');
+        provider.addScope('email');
+
+        // Sign in with popup
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                console.log('Google sign-in successful', result);
+
+                if (statusElement) {
+                    statusElement.textContent = 'Success! Redirecting...';
+                }
+
+                // Check if user is new
+                const isNewUser = result.additionalUserInfo.isNewUser;
+
+                // If new user, create profile in Firestore
+                if (isNewUser && db) {
+                    console.log('Creating user profile in Firestore');
+                    return db.collection('users').doc(result.user.uid).set({
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        createdAt: new Date(),
+                        specialty: ''
+                    }).then(() => {
+                        window.location.href = 'profile.html';
+                    });
+                } else {
                     window.location.href = 'profile.html';
                 }
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('Google sign-in error:', error);
+
+                if (statusElement) {
+                    statusElement.textContent = `Error: ${error.message}`;
+                    statusElement.style.color = 'red';
+                }
+
                 if (authError) {
-                    showError(authError, error.message || 'Failed to sign in with Google. Please try again.');
+                    showError(authError, `Failed to sign in with Google: ${error.message}`);
                 }
             });
     } catch (error) {
         console.error('Exception in Google sign-in function:', error);
+
+        if (statusElement) {
+            statusElement.textContent = `Unexpected error: ${error.message}`;
+            statusElement.style.color = 'red';
+        }
+
         if (authError) {
             showError(authError, 'An unexpected error occurred. Please try again.');
         }
     }
 }
-
-// Handle redirect result
-// This is now handled by google-auth.js, but we'll keep this for compatibility
-document.addEventListener('DOMContentLoaded', function() {
-    // Check if we're on a page that needs to handle redirect results
-    if (window.location.pathname.includes('login.html') ||
-        window.location.pathname.includes('signup.html') ||
-        window.location.pathname.includes('index.html')) {
-
-        // Use the implementation from google-auth.js
-        window.googleAuth.handleGoogleRedirectResult()
-            .then(result => {
-                if (result && result.user) {
-                    console.log('Google redirect sign-in successful, redirecting to profile page');
-                    window.location.href = 'profile.html';
-                }
-            })
-            .catch(error => {
-                console.error('Google redirect result error:', error);
-                // Only show error if we're on the signup or login page
-                if (authError && (window.location.pathname.includes('signup.html') || window.location.pathname.includes('login.html'))) {
-                    showError(authError, error.message || 'Failed to complete Google sign-in. Please try again.');
-                }
-            });
-    }
-});
 
 // Google login button
 if (googleLoginBtn) {
