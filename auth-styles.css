@@ -116,8 +116,6 @@
 
 .input-with-icon {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
 .input-with-icon i {
@@ -126,15 +124,10 @@
     top: 50%;
     transform: translateY(-50%);
     color: #aaa;
-    z-index: 2;
-    pointer-events: none;
 }
 
 .input-with-icon input {
     padding-left: 40px;
-    position: relative;
-    z-index: 1;
-    width: 100%;
 }
 
 .auth-form input[type="text"],
