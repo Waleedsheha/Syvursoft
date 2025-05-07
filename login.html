@@ -105,10 +105,40 @@
                     <button id="google-login" class="btn btn-social btn-google">
                         <i class="fab fa-google"></i> Google
                     </button>
+                    <button id="direct-google-login" class="btn btn-social btn-google" style="margin-top: 10px; background-color: #4285f4; color: white;">
+                        <i class="fab fa-google"></i> Direct Google Login
+                    </button>
                 </div>
                 <div id="auth-error" class="auth-error" style="display: none;"></div>
                 <p class="auth-note" style="font-size: 0.8rem; margin-top: 10px; color: #666;">Note: You may need to allow popups for this site to use Google login.</p>
             </div>
+
+            <script>
+                document.getElementById('direct-google-login').addEventListener('click', function() {
+                    // Create a Google Auth Provider
+                    const provider = new firebase.auth.GoogleAuthProvider();
+
+                    // Add scopes for better user data
+                    provider.addScope('profile');
+                    provider.addScope('email');
+
+                    // Set custom parameters for better UX
+                    provider.setCustomParameters({
+                        'prompt': 'select_account'
+                    });
+
+                    // Sign in with popup
+                    firebase.auth().signInWithPopup(provider)
+                        .then((result) => {
+                            console.log('Direct Google sign-in successful!', result);
+                            window.location.href = 'profile.html';
+                        })
+                        .catch((error) => {
+                            console.error('Direct Google sign-in error:', error);
+                            alert('Google sign-in failed: ' + error.message);
+                        });
+                });
+            </script>
 
             <div class="auth-footer">
                 <p>Don't have an account? <a href="signup.html">Sign up</a></p>
@@ -140,6 +170,7 @@
     <script src="js/google-auth.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/auth-ui.js"></script>
+    <script src="js/auth-debug.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
