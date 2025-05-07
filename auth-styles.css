@@ -124,10 +124,15 @@
     top: 50%;
     transform: translateY(-50%);
     color: #aaa;
+    pointer-events: none; /* Ensures the icon doesn't block clicks */
+    z-index: 1; /* Lower z-index than the input */
 }
 
 .input-with-icon input {
     padding-left: 40px;
+    background-color: white; /* Ensures text is visible */
+    position: relative; /* Creates stacking context */
+    z-index: 2; /* Higher z-index than the icon */
 }
 
 .auth-form input[type="text"],
