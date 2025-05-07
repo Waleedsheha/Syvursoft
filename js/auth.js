@@ -204,33 +204,116 @@ if (resetForm) {
 
 // Google Sign-in
 function signInWithGoogle() {
-    const provider = new firebase.auth.GoogleAuthProvider();
+    console.log('Google sign-in function called');
+    try {
+        // Create Google auth provider
+        const provider = new firebase.auth.GoogleAuthProvider();
+        console.log('Google provider created');
 
-    auth.signInWithPopup(provider)
-        .then((result) => {
-            // Check if user is new
-            const isNewUser = result.additionalUserInfo.isNewUser;
+        // Add scopes for better user data
+        provider.addScope('profile');
+        provider.addScope('email');
 
-            // If new user, create profile in Firestore
-            if (isNewUser && db) {
-                return db.collection('users').doc(result.user.uid).set({
-                    name: result.user.displayName,
-                    email: result.user.email,
-                    createdAt: new Date(),
-                    specialty: ''
-                });
-            }
-        })
-        .then(() => {
-            window.location.href = 'profile.html';
-        })
-        .catch((error) => {
-            console.error('Google sign-in error:', error);
-            if (authError) {
-                showError(authError, 'Failed to sign in with Google. Please try again.');
-            }
+        // Set custom parameters
+        provider.setCustomParameters({
+            'prompt': 'select_account'
         });
+
+        // Try redirect auth first (more reliable than popup)
+        auth.signInWithRedirect(provider)
+            .catch(error => {
+                console.error('Redirect auth failed, trying popup:', error);
+                // If redirect fails, try popup
+                return auth.signInWithPopup(provider);
+            })
+            .then((result) => {
+                if (!result) return; // Skip if this is after redirect initiation
+
+                console.log('Google sign-in successful', result);
+                // Check if user is new
+                const isNewUser = result.additionalUserInfo.isNewUser;
+                console.log('Is new user:', isNewUser);
+
+                // If new user, create profile in Firestore
+                if (isNewUser && db) {
+                    console.log('Creating user profile in Firestore');
+                    return db.collection('users').doc(result.user.uid).set({
+                        name: result.user.displayName,
+                        email: result.user.email,
+                        createdAt: new Date(),
+                        specialty: ''
+                    });
+                }
+            })
+            .then(() => {
+                // This might not execute if we're doing a redirect
+                const user = auth.currentUser;
+                if (user) {
+                    console.log('Redirecting to profile page');
+                    window.location.href = 'profile.html';
+                }
+            })
+            .catch((error) => {
+                console.error('Google sign-in error:', error);
+                console.error('Error code:', error.code);
+                console.error('Error message:', error.message);
+
+                let errorMessage = 'Failed to sign in with Google. ';
+
+                // Handle specific error cases
+                if (error.code === 'auth/popup-blocked') {
+                    errorMessage += 'Please allow popups for this website and try again.';
+                } else if (error.code === 'auth/popup-closed-by-user') {
+                    errorMessage += 'Sign-in was cancelled. Please try again.';
+                } else if (error.code === 'auth/cancelled-popup-request') {
+                    errorMessage += 'Another sign-in attempt is in progress. Please wait.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage += 'Network error. Please check your connection and try again.';
+                } else {
+                    errorMessage += 'Error: ' + error.message;
+                }
+
+                if (authError) {
+                    showError(authError, errorMessage);
+                }
+            });
+    } catch (error) {
+        console.error('Exception in Google sign-in function:', error);
+        if (authError) {
+            showError(authError, 'An unexpected error occurred. Please try again.');
+        }
+    }
 }
+
+// Handle redirect result
+auth.getRedirectResult().then((result) => {
+    if (result.user) {
+        console.log('Redirect result received', result);
+        // Check if user is new
+        const isNewUser = result.additionalUserInfo.isNewUser;
+
+        // If new user, create profile in Firestore
+        if (isNewUser && db) {
+            console.log('Creating user profile in Firestore after redirect');
+            db.collection('users').doc(result.user.uid).set({
+                name: result.user.displayName,
+                email: result.user.email,
+                createdAt: new Date(),
+                specialty: ''
+            }).then(() => {
+                window.location.href = 'profile.html';
+            });
+        } else {
+            window.location.href = 'profile.html';
+        }
+    }
+}).catch((error) => {
+    console.error('Redirect result error:', error);
+    // Only show error if we're on the signup or login page
+    if (authError && (window.location.pathname.includes('signup.html') || window.location.pathname.includes('login.html'))) {
+        showError(authError, 'Failed to complete Google sign-in. Please try again.');
+    }
+});
 
 // Google login button
 if (googleLoginBtn) {
