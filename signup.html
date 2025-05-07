@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - SyvurSoft</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="syvursoft-styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="stylesheet" href="button-styles.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDK (early load) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+</head>
+<body class="syvursoft-page auth-page">
+    <div class="scroll-progress"></div>
+    <header class="syvursoft-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo">
+                    <h1>SyvurSoft</h1>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="ABGen.html">ABGen</a></li>
+                    <li class="user-menu">
+                        <a href="#" id="user-dropdown-toggle">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="user-name">Account</span>
+                        </a>
+                        <ul class="dropdown-menu" id="user-dropdown">
+                            <li><a href="profile.html"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="auth-links">
+                        <a href="login.html">Login</a>
+                    </li>
+                    <li class="auth-links">
+                        <a href="signup.html">Sign Up</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Create an Account</h2>
+                <p>Join SyvurSoft to access our medical software solutions</p>
+            </div>
+
+            <div id="auth-error" class="auth-error"></div>
+
+            <form id="signup-form" class="auth-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required minlength="6">
+                    </div>
+                    <small>Password must be at least 6 characters</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirm-password" name="confirm-password" required minlength="6">
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <div class="terms-agreement">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+
+            <div class="social-login">
+                <p>Or sign up with</p>
+                <div class="social-buttons">
+                    <button id="google-signup" class="btn btn-social btn-google">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                </div>
+            </div>
+
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-branding">
+                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" class="syvursoft-logo">
+                    <p>&copy; 2025 SyvurSoft. All Rights Reserved.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="about.html">About Us</a>
+                    <a href="mailto:Syvursoft@gmail.com">Email Us</a>
+                    <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
+                    <a href="https://www.facebook.com/profile.php?id=61575535048759" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+    <script src="js/auth-ui.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('mobile-active');
+                });
+            }
+
+            // Scroll progress indicator
+            window.addEventListener('scroll', function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.querySelector('.scroll-progress').style.width = scrolled + "%";
+            });
+        });
+    </script>
+</body>
+</html>

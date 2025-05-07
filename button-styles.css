@@ -1,0 +1,264 @@
+/* ABGen-style Button Styles */
+
+/* Fix for header navigation buttons - make text white */
+header nav ul li a,
+.syvursoft-header nav ul li a,
+.syvursoft-header .user-menu > a,
+.syvursoft-header .auth-links a {
+    color: white !important;
+}
+
+/* Make hero banner paragraph text white */
+.hero-banner .hero-content p {
+    color: white !important;
+}
+
+/* Make sure dropdown menu items have dark text */
+.dropdown-menu li a {
+    color: var(--text-color) !important;
+}
+
+/* Base button style */
+.btn {
+    display: inline-block;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* Primary button style */
+.btn-primary {
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0ff 100%);
+    color: #6a11cb;
+}
+
+/* Secondary button style */
+.btn-secondary {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Secondary button hover style - blue text on white background */
+.btn-secondary:hover {
+    background: white;
+    color: #0056b3; /* Blue text color */
+    border: 1px solid white;
+}
+
+/* Hover effects */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 20px rgba(66, 133, 244, 0.4);
+}
+
+/* Active effects */
+.btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Shine effect */
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.6s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Button container */
+.button-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    text-align: center;
+}
+
+/* Button with icon */
+.btn i {
+    margin-right: 8px;
+}
+
+/* Block button (full width) */
+.btn-block {
+    width: 100%;
+}
+
+/* Social login buttons */
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+}
+
+.btn-google {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    color: #db4437;
+}
+
+/* Analyze button (specific to ABGen) */
+.analyze-button {
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0ff 100%);
+    color: #6a11cb;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+}
+
+.analyze-button i {
+    margin-right: 8px;
+    animation: pulse-icon 2s infinite alternate;
+}
+
+.analyze-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    transition: all 0.6s ease;
+}
+
+.analyze-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.analyze-button:hover::before {
+    left: 100%;
+}
+
+/* CTA buttons layout */
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Button tag styling */
+.button-tag {
+    position: relative;
+    margin-bottom: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite, float 3s ease-in-out infinite;
+    z-index: 2;
+    transform-origin: center;
+    display: inline-block;
+}
+
+.android-tag {
+    background: linear-gradient(135deg, #3ddc84, #2bb673);
+    border: 2px solid #fff;
+}
+
+.web-tag {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    border: 2px solid #fff;
+}
+
+.button-tag i {
+    margin-right: 5px;
+    animation: spin 10s linear infinite;
+    display: inline-block;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse-icon {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+        margin-right: 0;
+    }
+}

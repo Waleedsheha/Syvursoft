@@ -51,6 +51,110 @@
     margin: 0;
 }
 
+/* Navigation */
+.syvursoft-header nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.syvursoft-header nav ul li {
+    margin-left: 25px;
+}
+
+.syvursoft-header nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.syvursoft-header nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* User Menu */
+.user-menu {
+    position: relative;
+    display: none; /* Hidden by default until user is authenticated */
+}
+
+.user-menu > a {
+    display: flex;
+    align-items: center;
+}
+
+.user-menu i {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    min-width: 180px;
+    z-index: 100;
+    display: none;
+    overflow: hidden;
+}
+
+.dropdown-menu.active {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu li {
+    display: block;
+    margin: 0;
+}
+
+.dropdown-menu li a {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f5f8fa;
+}
+
+.dropdown-menu li a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+/* Auth Links */
+.auth-links {
+    display: flex; /* Show by default */
+    align-items: center;
+}
+
+.auth-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    margin-left: 15px;
+}
+
+.auth-links a:hover {
+    color: var(--primary-color);
+}
+
 /* Mobile Navigation */
 .syvursoft-header .mobile-menu-toggle {
     display: none;
@@ -85,7 +189,7 @@
         top: 20px;
         right: 20px;
     }
-    
+
     .syvursoft-header nav {
         display: none;
         width: 100%;
@@ -96,18 +200,48 @@
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
         z-index: 5;
     }
-    
+
     .syvursoft-header nav.mobile-active {
         display: block;
     }
-    
+
     .syvursoft-header nav ul {
         flex-direction: column;
         align-items: center;
         padding: 10px 0;
     }
-    
+
     .syvursoft-header nav ul li {
+        margin: 10px 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Mobile user menu */
+    .syvursoft-header .user-menu {
+        position: static;
+    }
+
+    .syvursoft-header .dropdown-menu {
+        position: static;
+        width: 100%;
+        box-shadow: none;
+        margin-top: 10px;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+    }
+
+    .syvursoft-header .dropdown-menu li a {
+        justify-content: center;
+    }
+
+    /* Mobile auth links */
+    .syvursoft-header .auth-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .syvursoft-header .auth-links a {
         margin: 10px 0;
         width: 100%;
         text-align: center;
@@ -502,11 +636,11 @@
     .product-features.animated {
         grid-template-columns: 1fr;
     }
-    
+
     .product-title {
         font-size: 2.5rem;
     }
-    
+
     .product-tagline {
         font-size: 1.3rem;
     }
@@ -835,11 +969,11 @@ body::after {
     .values-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .vision-list {
         grid-template-columns: 1fr;
     }
-    
+
     .platform-vision {
         padding: 30px 20px;
     }
@@ -1358,7 +1492,7 @@ footer .animated-bg {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
+    background:
         radial-gradient(circle at 20% 30%, rgba(0, 160, 233, 0.03) 0%, transparent 8%),
         radial-gradient(circle at 80% 70%, rgba(0, 86, 179, 0.03) 0%, transparent 8%);
     opacity: 0.7;
@@ -1427,9 +1561,9 @@ footer .animated-bg {
 .water-bubble {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, 
-                rgba(255, 255, 255, 0.8) 0%, 
-                rgba(0, 160, 233, 0.2) 40%, 
+    background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(0, 160, 233, 0.2) 40%,
                 rgba(0, 86, 179, 0.1) 100%);
     box-shadow: 0 0 10px rgba(0, 160, 233, 0.2);
     pointer-events: auto;
@@ -1526,9 +1660,9 @@ footer .animated-bg {
 .water-bubble {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, 
-                rgba(255, 255, 255, 0.8) 0%, 
-                rgba(0, 160, 233, 0.2) 40%, 
+    background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(0, 160, 233, 0.2) 40%,
                 rgba(0, 86, 179, 0.1) 100%);
     box-shadow: 0 0 10px rgba(0, 160, 233, 0.2);
     pointer-events: auto;
@@ -1598,9 +1732,9 @@ footer {
 .water-bubble {
     position: absolute;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, 
-                rgba(255, 255, 255, 0.8) 0%, 
-                rgba(0, 160, 233, 0.2) 40%, 
+    background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(0, 160, 233, 0.2) 40%,
                 rgba(0, 86, 179, 0.1) 100%);
     box-shadow: 0 0 10px rgba(0, 160, 233, 0.2);
     pointer-events: auto;
@@ -1901,7 +2035,7 @@ footer {
     .contribution-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .contribution-intro h2 {
         font-size: 1.8rem;
     }
@@ -1911,11 +2045,11 @@ footer {
     .community-contribution {
         padding: 50px 0;
     }
-    
+
     .contribution-intro h2 {
         font-size: 1.6rem;
     }
-    
+
     .contribution-card h3 {
         font-size: 1.3rem;
     }
@@ -1991,7 +2125,7 @@ footer {
         align-items: center;
         gap: 20px;
     }
-    
+
     .contact-option {
         width: 100%;
         max-width: 350px;

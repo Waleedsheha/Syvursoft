@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - SyvurSoft</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="syvursoft-styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="stylesheet" href="profile-styles.css">
+    <link rel="stylesheet" href="button-styles.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDK (early load) -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-config.js"></script>
+</head>
+<body class="syvursoft-page profile-page">
+    <div class="scroll-progress"></div>
+    <header class="syvursoft-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo">
+                    <h1>SyvurSoft</h1>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="ABGen.html">ABGen</a></li>
+                    <li class="user-menu">
+                        <a href="#" id="user-dropdown-toggle">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="user-name">Account</span>
+                        </a>
+                        <ul class="dropdown-menu" id="user-dropdown">
+                            <li><a href="profile.html"><i class="fas fa-id-card"></i> My Profile</a></li>
+                            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="auth-links">
+                        <a href="login.html">Login</a>
+                    </li>
+                    <li class="auth-links">
+                        <a href="signup.html">Sign Up</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-sidebar">
+            <div class="profile-avatar">
+                <div class="avatar-circle" id="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h3 id="profile-name">Loading...</h3>
+                <p id="profile-email">Loading...</p>
+            </div>
+            <ul class="profile-menu">
+                <li class="active" data-tab="account"><i class="fas fa-user-cog"></i> Account Settings</li>
+                <li data-tab="security"><i class="fas fa-shield-alt"></i> Security</li>
+                <li data-tab="preferences"><i class="fas fa-sliders-h"></i> Preferences</li>
+            </ul>
+        </div>
+
+        <div class="profile-content">
+            <!-- Account Settings Tab -->
+            <div class="profile-tab active" id="account-tab">
+                <h2>Account Settings</h2>
+
+                <div id="profile-error" class="auth-error"></div>
+                <div id="profile-success" class="auth-success"></div>
+
+                <form id="profile-form" class="profile-form">
+                    <div class="form-group">
+                        <label for="display-name">Display Name</label>
+                        <input type="text" id="display-name" name="display-name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile-email-input">Email</label>
+                        <input type="email" id="profile-email-input" name="email" disabled>
+                        <small>Email cannot be changed</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialty">Medical Specialty</label>
+                        <select id="specialty" name="specialty">
+                            <option value="">Select a specialty</option>
+                            <option value="general-medicine">General Medicine</option>
+                            <option value="cardiology">Cardiology</option>
+                            <option value="pulmonology">Pulmonology</option>
+                            <option value="nephrology">Nephrology</option>
+                            <option value="neurology">Neurology</option>
+                            <option value="emergency-medicine">Emergency Medicine</option>
+                            <option value="intensive-care">Intensive Care</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </form>
+            </div>
+
+            <!-- Security Tab -->
+            <div class="profile-tab" id="security-tab">
+                <h2>Security</h2>
+
+                <div id="password-error" class="auth-error"></div>
+                <div id="password-success" class="auth-success"></div>
+
+                <form id="password-form" class="profile-form">
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" id="current-password" name="current-password" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" name="new-password" required minlength="6">
+                        <small>Password must be at least 6 characters</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-new-password">Confirm New Password</label>
+                        <input type="password" id="confirm-new-password" name="confirm-new-password" required minlength="6">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                </form>
+
+                <div class="security-section">
+                    <h3>Account Security</h3>
+                    <p>Protect your account with these additional security measures:</p>
+
+                    <div class="security-option">
+                        <div class="security-option-info">
+                            <h4>Email Verification</h4>
+                            <p>Verify your email address to secure your account.</p>
+                        </div>
+                        <button id="verify-email-btn" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i> Verify Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences Tab -->
+            <div class="profile-tab" id="preferences-tab">
+                <h2>Preferences</h2>
+
+                <div id="preferences-success" class="auth-success"></div>
+
+                <form id="preferences-form" class="profile-form">
+                    <div class="form-group">
+                        <label>Theme</label>
+                        <div class="theme-options">
+                            <div class="theme-option">
+                                <input type="radio" id="theme-light" name="theme" value="light" checked>
+                                <label for="theme-light">
+                                    <div class="theme-preview light-theme"></div>
+                                    <span>Light</span>
+                                </label>
+                            </div>
+                            <div class="theme-option">
+                                <input type="radio" id="theme-dark" name="theme" value="dark">
+                                <label for="theme-dark">
+                                    <div class="theme-preview dark-theme"></div>
+                                    <span>Dark</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notifications</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="notify-updates" name="notify-updates" checked>
+                                <label for="notify-updates">Product Updates</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="notify-news" name="notify-news" checked>
+                                <label for="notify-news">SyvurSoft News</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Preferences
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-branding">
+                    <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" class="syvursoft-logo">
+                    <p>&copy; 2025 SyvurSoft. All Rights Reserved.</p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="about.html">About Us</a>
+                    <a href="mailto:Syvursoft@gmail.com">Email Us</a>
+                    <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
+                    <a href="https://www.facebook.com/profile.php?id=61575535048759" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/auth.js"></script>
+    <script src="js/auth-ui.js"></script>
+    <script src="js/profile.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.mobile-menu-toggle');
+            const nav = document.querySelector('nav');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('mobile-active');
+                });
+            }
+
+            // Scroll progress indicator
+            window.addEventListener('scroll', function() {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                document.querySelector('.scroll-progress').style.width = scrolled + "%";
+            });
+        });
+    </script>
+</body>
+</html>
