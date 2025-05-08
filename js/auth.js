@@ -1,306 +1,122 @@
-// Authentication functionality
+// js/auth.js
 
-// DOM Elements
-const loginForm = document.getElementById('login-form');
-const signupForm = document.getElementById('signup-form');
-const resetForm = document.getElementById('reset-form');
-const googleLoginBtn = document.getElementById('google-login');
-const googleSignupBtn = document.getElementById('google-signup');
-const logoutBtn = document.getElementById('logout-btn');
-const authError = document.getElementById('auth-error');
-const authSuccess = document.getElementById('auth-success');
+// This script assumes that 'auth' and 'db' constants are defined
+// and available globally or in the script's scope by
+// the firebase-config.js file loaded previously.
+
+// DOM Elements for Header UI
 const userDropdownToggle = document.getElementById('user-dropdown-toggle');
 const userDropdown = document.getElementById('user-dropdown');
-const userName = document.getElementById('user-name');
+const navUserName = document.getElementById('nav-user-name'); // Correct ID from header HTML
+const authLinks = document.querySelectorAll('.auth-links'); // For header login/signup links
+const userMenu = document.querySelector('.user-menu'); // For header user menu
+const logoutBtn = document.getElementById('nav-logout-btn'); // Correct ID from header dropdown
 
-// Helper functions
-function showError(element, message) {
-    if (element) {
-        element.textContent = message;
-        element.style.display = 'block';
-    }
+// DOM Elements for this specific page (signup.html)
+const signedInMessage = document.getElementById('signed-in-message');
+const firebaseUIContainer = document.getElementById('firebaseui-auth-container');
+const loader = document.getElementById('loader');
+
+
+// Helper functions (simple versions, less needed with FirebaseUI)
+function showElement(element) {
+    if (element) element.style.display = 'block';
 }
 
-function showSuccess(element, message) {
-    if (element) {
-        element.textContent = message;
-        element.style.display = 'block';
-    }
+function hideElement(element) {
+     if (element) element.style.display = 'none';
 }
 
-function hideError(element) {
-    if (element) {
-        element.style.display = 'none';
-    }
-}
-
-function hideSuccess(element) {
-    if (element) {
-        element.style.display = 'none';
-    }
-}
-
-// Check if user is logged in and handle redirects
+// Check if user is logged in and handle redirects + UI updates
+// This listener runs whenever the auth state changes (login, logout)
 auth.onAuthStateChanged(function(user) {
-    if (user) {
-        // User is signed in
-        console.log('User is signed in:', user.email);
+    console.log("Auth state changed. Current user:", user ? user.email : "None");
 
-        // Redirect if on login/signup/reset pages
-        const currentPath = window.location.pathname;
-        if (currentPath.includes('login.html') ||
-            currentPath.includes('signup.html') ||
-            currentPath.includes('reset-password.html')) {
-            window.location.href = 'profile.html';
-        }
-    } else {
-        // User is signed out
-        console.log('User is signed out');
+    const currentPath = window.location.pathname;
 
-        // Redirect if on profile page
-        const currentPath = window.location.pathname;
-        if (currentPath.includes('profile.html')) {
-            window.location.href = 'login.html';
+    // === Handle Header UI Visibility ===
+    if (authLinks && userMenu && navUserName) { // Check if header elements exist
+        if (user) {
+            // User is signed in
+            authLinks.forEach(link => hideElement(link));
+            showElement(userMenu); // Display user menu
+            navUserName.textContent = user.displayName || user.email || 'Account'; // Use display name if available
+        } else {
+            // User is signed out
+            authLinks.forEach(link => showElement(link));
+            hideElement(userMenu); // Hide user menu
+            navUserName.textContent = 'Account'; // Reset name
         }
     }
+
+    // === Handle Page Content & Redirections ===
+    if (currentPath.includes('signup.html')) { // Logic specifically for the signup page
+        if (user) {
+             // User is signed in
+             console.log('User is signed in on signup page. Redirecting or showing message.');
+             hideElement(firebaseUIContainer); // Hide FirebaseUI widget
+             hideElement(loader); // Hide loader
+             showElement(signedInMessage); // Show "already signed in" message
+
+             // Redirect to profile after a short delay
+             setTimeout(() => {
+                 window.location.href = 'profile.html';
+             }, 2000); // Redirect after 2 seconds
+        } else {
+             // User is signed out
+             console.log('User is signed out on signup page. Showing FirebaseUI.');
+             // FirebaseUI will be started by auth-ui-init.js, which handles showing itself
+             hideElement(signedInMessage); // Hide signed-in message
+             // loader and firebaseUIContainer display handled by auth-ui-init.js uiShown callback
+        }
+    }
+     // Add logic here for other pages if needed, like login.html, profile.html etc.
+     // The previous auth.js had redirects for login/signup/reset -> profile
+     // and profile -> login. You should adapt that logic here based on which
+     // pages this auth.js script is included on.
+
+     // Example: Redirect logic for login.html (if auth.js is also on login.html)
+     if (currentPath.includes('login.html')) {
+         if (user) {
+             console.log('User signed in on login page. Redirecting to profile.');
+             window.location.href = 'profile.html';
+         } else {
+             console.log('User signed out on login page. Showing login form.');
+             // Assume login.html has its own form or FirebaseUI container
+         }
+     }
+     // Example: Redirect logic for profile.html (if auth.js is also on profile.html)
+     if (currentPath.includes('profile.html')) {
+         if (!user) {
+             console.log('User signed out on profile page. Redirecting to login.');
+             window.location.href = 'login.html';
+         }
+     }
+
+
 });
 
-// Login form submission
-if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        hideError(authError);
-
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const rememberMe = document.getElementById('remember').checked;
-
-        // Set persistence based on remember me checkbox
-        const persistence = rememberMe ? firebase.auth.Auth.Persistence.LOCAL : firebase.auth.Auth.Persistence.SESSION;
-
-        auth.setPersistence(persistence)
-            .then(() => {
-                return auth.signInWithEmailAndPassword(email, password);
-            })
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                console.log('User logged in:', user.email);
-                window.location.href = 'profile.html';
-            })
-            .catch((error) => {
-                console.error('Login error:', error);
-                let errorMessage = 'Failed to login. Please check your credentials.';
-
-                if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
-                    errorMessage = 'Invalid email or password. Please try again.';
-                } else if (error.code === 'auth/too-many-requests') {
-                    errorMessage = 'Too many failed login attempts. Please try again later or reset your password.';
-                }
-
-                showError(authError, errorMessage);
-            });
-    });
-}
-
-// Signup form submission
-if (signupForm) {
-    signupForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        hideError(authError);
-
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm-password').value;
-        const termsAgreed = document.getElementById('terms').checked;
-
-        // Validate form
-        if (password !== confirmPassword) {
-            showError(authError, 'Passwords do not match. Please try again.');
-            return;
-        }
-
-        if (!termsAgreed) {
-            showError(authError, 'You must agree to the Terms of Service and Privacy Policy.');
-            return;
-        }
-
-        // Create user
-        auth.createUserWithEmailAndPassword(email, password)
-            .then((userCredential) => {
-                // Signed up
-                const user = userCredential.user;
-                console.log('User created:', user.email);
-
-                // Update profile with name
-                return user.updateProfile({
-                    displayName: name
-                });
-            })
-            .then(() => {
-                // Create user document in Firestore if available
-                if (db) {
-                    return db.collection('users').doc(auth.currentUser.uid).set({
-                        name: name,
-                        email: auth.currentUser.email,
-                        createdAt: new Date(),
-                        specialty: ''
-                    });
-                }
-            })
-            .then(() => {
-                // Send email verification
-                return auth.currentUser.sendEmailVerification();
-            })
-            .then(() => {
-                window.location.href = 'profile.html';
-            })
-            .catch((error) => {
-                console.error('Signup error:', error);
-                let errorMessage = 'Failed to create account. Please try again.';
-
-                if (error.code === 'auth/email-already-in-use') {
-                    errorMessage = 'Email is already in use. Please use a different email or login.';
-                } else if (error.code === 'auth/weak-password') {
-                    errorMessage = 'Password is too weak. Please use a stronger password.';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'Invalid email address. Please check and try again.';
-                }
-
-                showError(authError, errorMessage);
-            });
-    });
-}
-
-// Password reset form
-if (resetForm) {
-    resetForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        hideError(authError);
-        hideSuccess(authSuccess);
-
-        const email = document.getElementById('email').value;
-
-        auth.sendPasswordResetEmail(email)
-            .then(() => {
-                showSuccess(authSuccess, 'Password reset email sent! Check your inbox for further instructions.');
-                resetForm.reset();
-            })
-            .catch((error) => {
-                console.error('Password reset error:', error);
-                let errorMessage = 'Failed to send password reset email. Please try again.';
-
-                if (error.code === 'auth/user-not-found') {
-                    errorMessage = 'No account found with this email address.';
-                } else if (error.code === 'auth/invalid-email') {
-                    errorMessage = 'Invalid email address. Please check and try again.';
-                }
-
-                showError(authError, errorMessage);
-            });
-    });
-}
-
-// Simple Google Sign-in
-function signInWithGoogle() {
-    console.log('Google sign-in function called');
-
-    // Show status
-    const statusElement = document.getElementById('google-status');
-    if (statusElement) {
-        statusElement.textContent = 'Connecting to Google...';
-        statusElement.style.display = 'block';
-    }
-
-    try {
-        // Create Google provider
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        // Add scopes
-        provider.addScope('profile');
-        provider.addScope('email');
-
-        // Sign in with popup
-        auth.signInWithPopup(provider)
-            .then((result) => {
-                console.log('Google sign-in successful', result);
-
-                if (statusElement) {
-                    statusElement.textContent = 'Success! Redirecting...';
-                }
-
-                // Check if user is new
-                const isNewUser = result.additionalUserInfo.isNewUser;
-
-                // If new user, create profile in Firestore
-                if (isNewUser && db) {
-                    console.log('Creating user profile in Firestore');
-                    return db.collection('users').doc(result.user.uid).set({
-                        name: result.user.displayName,
-                        email: result.user.email,
-                        createdAt: new Date(),
-                        specialty: ''
-                    }).then(() => {
-                        window.location.href = 'profile.html';
-                    });
-                } else {
-                    window.location.href = 'profile.html';
-                }
-            })
-            .catch((error) => {
-                console.error('Google sign-in error:', error);
-
-                if (statusElement) {
-                    statusElement.textContent = `Error: ${error.message}`;
-                    statusElement.style.color = 'red';
-                }
-
-                if (authError) {
-                    showError(authError, `Failed to sign in with Google: ${error.message}`);
-                }
-            });
-    } catch (error) {
-        console.error('Exception in Google sign-in function:', error);
-
-        if (statusElement) {
-            statusElement.textContent = `Unexpected error: ${error.message}`;
-            statusElement.style.color = 'red';
-        }
-
-        if (authError) {
-            showError(authError, 'An unexpected error occurred. Please try again.');
-        }
-    }
-}
-
-// Google login button
-if (googleLoginBtn) {
-    googleLoginBtn.addEventListener('click', signInWithGoogle);
-}
-
-// Google signup button
-if (googleSignupBtn) {
-    googleSignupBtn.addEventListener('click', signInWithGoogle);
-}
-
-// Logout functionality
+// Logout functionality (for the header button)
+// Using the correct ID from the header dropdown menu
 if (logoutBtn) {
     logoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
+        console.log('Logout button clicked.');
 
         auth.signOut()
             .then(() => {
-                console.log('User signed out');
-                window.location.href = 'index.html';
+                console.log('User signed out successfully.');
+                // The onAuthStateChanged listener handles the UI update and redirection
             })
             .catch((error) => {
                 console.error('Logout error:', error);
+                // Optionally show a logout error message if needed
+                // showError(authError, 'Logout failed: ' + error.message); // Need authError element
             });
     });
 }
 
-// User dropdown toggle
+// User dropdown toggle (for the header)
 if (userDropdownToggle && userDropdown) {
     userDropdownToggle.addEventListener('click', function(e) {
         e.preventDefault();
@@ -309,8 +125,16 @@ if (userDropdownToggle && userDropdown) {
 
     // Close dropdown when clicking outside
     document.addEventListener('click', function(e) {
-        if (!userDropdownToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+        if (userDropdownToggle && userDropdown &&
+           !userDropdownToggle.contains(e.target) &&
+           !userDropdown.contains(e.target)) {
             userDropdown.classList.remove('active');
         }
     });
 }
+
+// Note: Form submission handlers (for custom email/password forms),
+// Google button listeners (if not using FirebaseUI), and password reset
+// form logic should be in other scripts or handled by FirebaseUI
+// if you adopt the FirebaseUI-centric approach.
+// This auth.js focuses on universal auth state management and header UI.

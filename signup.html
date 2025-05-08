@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="syvursoft-styles.css">
     <link rel="stylesheet" href="auth-styles.css">
-    <link rel="stylesheet" href="button-styles.css">
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -16,7 +15,57 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase UI -->
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+
+    <!-- Your Firebase Configuration (Must load AFTER SDKs) -->
     <script src="js/firebase-config.js"></script>
+
+    <!-- Styles for the FirebaseUI container and loader -->
+    <style>
+      /* You can move this style block to your auth-styles.css if preferred */
+      #firebaseui-auth-container {
+        margin-top: 20px;
+        margin-bottom: 20px; /* Add space below the widget */
+      }
+
+      #loader {
+        text-align: center;
+        margin: 30px 0;
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border-left-color: #0056b3;
+        animation: spin 1s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Style for the signed-in message if needed on this page */
+      #signed-in-message {
+        text-align: center;
+        padding: 20px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+      #signed-in-message p {
+          margin: 0;
+          color: #333;
+      }
+
+    </style>
+
 </head>
 <body class="syvursoft-page auth-page">
     <div class="scroll-progress"></div>
@@ -38,23 +87,23 @@
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="ABGen.html">ABGen</a></li>
-                    <li class="user-menu">
+                    <!-- These next two list items will be shown/hidden by auth.js -->
+                    <li class="user-menu" style="display: none;">
                         <a href="#" id="user-dropdown-toggle">
                             <i class="fas fa-user-circle"></i>
-                            <span id="user-name">Account</span>
+                            <span id="nav-user-name">Account</span>
                         </a>
                         <ul class="dropdown-menu" id="user-dropdown">
                             <li><a href="profile.html"><i class="fas fa-id-card"></i> My Profile</a></li>
-                            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            <li><a href="#" id="nav-logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
                     </li>
-                    <li class="auth-links">
+                    <li class="auth-links" style="display: none;">
                         <a href="login.html">Login</a>
                     </li>
-                    <li class="auth-links">
+                    <li class="auth-links" style="display: none;">
                         <a href="signup.html">Sign Up</a>
                     </li>
-
                 </ul>
             </nav>
         </div>
@@ -63,70 +112,30 @@
     <main class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
-                <h2>Create an Account</h2>
-                <p>Join SyvurSoft to access our medical software solutions</p>
+                <h2>Sign Up for SyvurSoft</h2>
+                <p>Create your account using your preferred method</p>
             </div>
 
-            <div id="auth-error" class="auth-error"></div>
+            <!-- Authentication Errors (FirebaseUI handles most, but helpful for general messages) -->
+            <div id="auth-error" class="auth-error" style="display: none;"></div>
+            <div id="auth-success" class="auth-success" style="display: none;"></div>
 
-            <form id="signup-form" class="auth-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                </div>
+            <!-- FirebaseUI auth container -->
+            <!-- FirebaseUI will render the sign-up options here -->
+            <div id="firebaseui-auth-container"></div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" name="password" required minlength="6">
-                    </div>
-                    <small>Password must be at least 6 characters</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirm-password">Confirm Password</label>
-                    <div class="input-with-icon">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="confirm-password" name="confirm-password" required minlength="6">
-                    </div>
-                </div>
-
-                <div class="form-options">
-                    <div class="terms-agreement">
-                        <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">I agree to the <a href="terms.html" target="_blank">Terms of Service</a> and <a href="privacy.html" target="_blank">Privacy Policy</a></label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </button>
-            </form>
-
-            <div class="social-login">
-                <p>Or sign up with</p>
-                <div class="social-buttons">
-                    <button id="google-signup" class="btn btn-social btn-google">
-                        <i class="fab fa-google"></i> Google
-                    </button>
-                </div>
-                <div id="google-status" style="margin-top: 10px; display: none;"></div>
-                <div id="auth-error" class="auth-error" style="display: none;"></div>
-                <p class="auth-note" style="font-size: 0.8rem; margin-top: 10px; color: #666;">Note: You may need to allow popups for this site to use Google sign-up.</p>
-                <p><a href="google-test.html" style="color: #0056b3;">Try our Google authentication test page</a></p>
+            <!-- Loading indicator -->
+            <div id="loader">
+              <div class="spinner"></div>
+              <p>Loading sign-up options...</p>
             </div>
+
+            <!-- Message if user is already signed in and redirected here -->
+            <div id="signed-in-message" style="display: none;">
+                <p>You are already signed in. Redirecting to your profile...</p>
+                 <p><a href="profile.html">Go to Profile Now</a></p>
+            </div>
+
 
             <div class="auth-footer">
                 <p>Already have an account? <a href="login.html">Login</a></p>
@@ -139,7 +148,7 @@
             <div class="footer-content">
                 <div class="footer-branding">
                     <img src="Images/syvursoft-logo.svg" alt="SyvurSoft Logo" class="syvursoft-logo">
-                    <p>&copy; 2025 SyvurSoft. All Rights Reserved.</p>
+                    <p>© 2025 SyvurSoft. All Rights Reserved.</p>
                 </div>
 
                 <div class="footer-links">
@@ -155,10 +164,11 @@
     </footer>
 
     <!-- Custom JS -->
-    <script src="js/google-auth.js"></script>
+    <!-- auth.js for global state changes, redirects, and logout -->
     <script src="js/auth.js"></script>
-    <script src="js/auth-ui.js"></script>
-    <script src="js/auth-debug.js"></script>
+    <!-- Script to initialize FirebaseUI on *this* page -->
+    <script src="js/auth-ui-init.js"></script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -179,6 +189,9 @@
                 const scrolled = (winScroll / height) * 100;
                 document.querySelector('.scroll-progress').style.width = scrolled + "%";
             });
+
+             // Hide loader and show FirebaseUI container when FirebaseUI is ready
+             // This is better handled within auth-ui-init.js's uiShown callback
         });
     </script>
 </body>
