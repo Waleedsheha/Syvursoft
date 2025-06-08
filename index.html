@@ -11,12 +11,6 @@
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Firebase SDK (early load) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="js/firebase-config.js"></script>
 </head>
 <body class="syvursoft-page">
     <div class="scroll-progress"></div>
@@ -33,26 +27,11 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="ABGen.html">ABGen</a></li>
-                    <li class="user-menu">
-                        <a href="#" id="user-dropdown-toggle">
-                            <i class="fas fa-user-circle"></i>
-                            <span id="user-name">Account</span>
-                        </a>
-                        <ul class="dropdown-menu" id="user-dropdown">
-                            <li><a href="profile.html"><i class="fas fa-id-card"></i> My Profile</a></li>
-                            <li><a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                    <li class="auth-links">
-                        <a href="login.html">Login</a>
-                    </li>
-                    <li class="auth-links">
-                        <a href="signup.html">Sign Up</a>
-                    </li>
-
+                    <li><a href="ATRIA.html">ATRIA</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="support.html">Support</a></li>
                 </ul>
             </nav>
         </div>
@@ -87,14 +66,14 @@
             <div class="floating-bubble"></div>
         </div>
         <div class="container">
-            <h2 class="section-title animate-on-scroll fade-in-up">Our Products</h2>
+            <h2 class="section-title animate-on-scroll fade-in-up">Our Releases</h2>
             <div class="product-card featured animate-on-scroll scale-in">
                 <div class="product-spotlight">
                     <div class="spotlight-beam"></div>
                 </div>
                 <div class="product-content">
                     <h3 class="product-title">ABGen</h3>
-                    <div class="product-badge pulse">Latest Release</div>
+                    <div class="product-badge pulse">Our First Release</div>
                     <div class="product-tagline">Revolutionizing Clinical Decision Making</div>
                     <p>Revolutionary blood gas analysis tool that transforms complex arterial blood gas data into actionable clinical insights.</p>
                     <ul class="product-features animated">
@@ -110,6 +89,31 @@
                         <li><i class="fas fa-file-export"></i> <span>Export Capabilities</span></li>
                     </ul>
                     <a href="ABGen.html" class="btn btn-primary btn-glow">Learn More</a>
+                </div>
+            </div>
+
+            <div class="product-card featured animate-on-scroll scale-in">
+                <div class="product-spotlight">
+                    <div class="spotlight-beam"></div>
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">ATRIA</h3>
+                    <div class="product-badge pulse">Our latest Release</div>
+                    <div class="product-tagline">Professional Echo Reports in Seconds</div>
+                    <p>Revolutionary echocardiography reporting tool that generates comprehensive, professional echo reports in just 20 seconds with your phone.</p>
+                    <ul class="product-features animated">
+                        <li><i class="fas fa-heartbeat"></i> <span>Quick Echo</span></li>
+                        <li><i class="fas fa-file-pdf"></i> <span>Professional PDF Reports</span></li>
+                        <li><i class="fas fa-mobile-alt"></i> <span>Mobile-First Design</span></li>
+                        <li><i class="fas fa-user-md"></i> <span>Cardiologist-Designed</span></li>
+                        <li><i class="fas fa-language"></i> <span>Arabic Header-Language Support</span></li>
+                        <li><i class="fas fa-cloud-download-alt"></i> <span>Offline Capability</span></li>
+                        <li><i class="fas fa-shield-alt"></i> <span>HIPAA Compliant</span></li>
+                        <li><i class="fas fa-chart-line"></i> <span>Automated Conclusion</span></li>
+                        <li><i class="fas fa-palette"></i> <span>Customizable Reports</span></li>
+                        <li><i class="fas fa-history"></i> <span>Report Management system</span></li>
+                    </ul>
+                    <a href="ATRIA.html" class="btn btn-primary btn-glow">Learn More</a>
                 </div>
             </div>
         </div>
@@ -159,7 +163,7 @@
                 <h3>Our Platform Vision</h3>
                 <p>SyvurSoft is developing a comprehensive suite of integrated applications to support Egyptian doctors across all aspects of their practice:</p>
                 <ul class="vision-list">
-                    <li><i class="fas fa-flask"></i> <span>Advanced diagnostic tools like ABGen for complex clinical analysis</span></li>
+                    <li><i class="fas fa-flask"></i> <span>Advanced diagnostic tools like ABGen for complex clinical analysis and ATRIA for rapid echocardiography reporting</span></li>
                     <li><i class="fas fa-user-md"></i> <span>Patient management systems tailored to Egyptian healthcare workflows</span></li>
                     <li><i class="fas fa-book-medical"></i> <span>Medical reference libraries with locally relevant protocols and guidelines</span></li>
                     <li><i class="fas fa-calendar-alt"></i> <span>Practice management tools to optimize time and resources</span></li>
@@ -179,12 +183,13 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                    <a href="about.html">About Us</a>
-                    <a href="mailto:Syvursoft@gmail.com">Email Us</a>
-                    <a href="https://wa.me/201211644172" target="_blank">WhatsApp</a>
-                    <a href="https://www.facebook.com/profile.php?id=61575535048759" target="_blank">Facebook</a>
+                    <a href="index.html">Home</a>
+                    <a href="ATRIA.html">ATRIA</a>
+                    <a href="ABGen.html">ABGen</a>
+                    <a href="about.html">About</a>
+                    <a href="support.html">Support</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
                 </div>
             </div>
         </div>
