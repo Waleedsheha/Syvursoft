@@ -36,9 +36,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload Syvursoft directory
+          # Upload Syvursoft directory from repository root
           path: './Syvursoft'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-          
