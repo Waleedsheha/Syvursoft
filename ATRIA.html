@@ -401,6 +401,317 @@
             z-index: 2;
         }
 
+        /* Fantastic Image Carousel Styles */
+        .gallery-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 50%, #1f5f8b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #fff, #e3f2fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gallery-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            z-index: 2;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 70vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .carousel-slide img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Navigation Buttons */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        /* Indicators */
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-indicator.active {
+            background: white;
+            border-color: white;
+            transform: scale(1.2);
+        }
+
+        .carousel-indicator:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Image Counter */
+        .image-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        /* Auto-play controls */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+        .control-btn.active {
+            background: white;
+            color: #3498db;
+        }
+
+        /* Custom Arabic Icon */
+        .arabic-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', 'Tahoma', sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .arabic-icon {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Mobile Responsive for Carousel */
+        @media (max-width: 768px) {
+            .gallery-title {
+                font-size: 2.5rem;
+            }
+
+            .carousel-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .carousel-prev {
+                left: 10px;
+            }
+
+            .carousel-next {
+                right: 10px;
+            }
+
+            .carousel-slide {
+                padding: 20px;
+            }
+
+            .carousel-slide img {
+                max-height: 50vh;
+            }
+
+            .image-counter {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .carousel-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .control-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .gallery-title {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .lightbox-prev {
+                left: -60px;
+            }
+
+            .lightbox-next {
+                right: -60px;
+            }
+        }
+
         .feature-card {
             text-align: center;
             transition: all 0.3s ease;
@@ -640,7 +951,7 @@
                         <i class="fas fa-user-md"></i>
                     </div>
                     <h3 class="feature-title">Cardiologist-Designed</h3>
-                    <p class="feature-description" style="color: white;">Built by cardiologists for cardiologists. Every feature is designed with real clinical workflows and needs in mind.</p>
+                    <p class="feature-description" style="color: white;">Built by A doctor for cardiologists. Every feature is designed with real workflows and needs in mind.</p>
                 </div>
 
                 <div class="feature-card glass-card">
@@ -648,7 +959,7 @@
                         <i class="fas fa-file-pdf"></i>
                     </div>
                     <h3 class="feature-title">Professional PDF Reports</h3>
-                    <p class="feature-description" style="color: white;">Generate beautifully formatted, professional PDF reports that meet clinical standards and can be easily shared or printed.</p>
+                    <p class="feature-description" style="color: white;">Generate beautifully formatted, professional PDF reports that meet KASR AL AINY standards and can be easily shared or printed.</p>
                 </div>
 
                 <div class="feature-card glass-card">
@@ -661,10 +972,10 @@
 
                 <div class="feature-card glass-card">
                     <div class="feature-icon">
-                        <i class="fas fa-language"></i>
+                        <div class="arabic-icon">ض</div>
                     </div>
-                    <h3 class="feature-title">Multi-Language Support</h3>
-                    <p class="feature-description" style="color: white;">Available in multiple languages to serve healthcare professionals worldwide. Localized for global clinical practice.</p>
+                    <h3 class="feature-title">Arabic Support</h3>
+                    <p class="feature-description" style="color: white;">Support adding arabic text to the header only.</p>
                 </div>
 
                 <div class="feature-card glass-card">
@@ -672,15 +983,15 @@
                         <i class="fas fa-cloud-download-alt"></i>
                     </div>
                     <h3 class="feature-title">Offline Capability</h3>
-                    <p class="feature-description" style="color: white;">Full functionality without internet connection. Perfect for busy clinical environments where connectivity may be limited.</p>
+                    <p class="feature-description" style="color: white;">Full functionality without internet connection after logging in. Perfect for busy clinical environments where connectivity may be limited.</p>
                 </div>
 
                 <div class="feature-card glass-card">
                     <div class="feature-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="feature-title">Advanced Calculations</h3>
-                    <p class="feature-description" style="color: white;">Automated calculations for all standard echocardiographic parameters with built-in reference ranges and clinical interpretations.</p>
+                    <h3 class="feature-title">Auto Calculations</h3>
+                    <p class="feature-description" style="color: white;">Automated calculations for all standard echocardiographic parameters with built-in reference ranges and clinical interpretations and conclosion.</p>
                 </div>
 
                 <div class="feature-card glass-card">
@@ -767,6 +1078,155 @@
             </div>
         </div>
     </section>
+
+    <!-- Fantastic Image Carousel Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-header">
+                <h2 class="gallery-title">ATRIA Gallery</h2>
+                <p class="gallery-subtitle">Explore ATRIA through our comprehensive image showcase</p>
+            </div>
+
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="image-counter">
+                        <span id="current-image">1</span> / <span id="total-images">38</span>
+                    </div>
+
+                    <div class="carousel-track" id="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(1).png" alt="ATRIA Image 1" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(2).png" alt="ATRIA Image 2" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(3).png" alt="ATRIA Image 3" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(4).png" alt="ATRIA Image 4" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(5).png" alt="ATRIA Image 5" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(6).png" alt="ATRIA Image 6" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(7).png" alt="ATRIA Image 7" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(8).png" alt="ATRIA Image 8" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(9).png" alt="ATRIA Image 9" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(10).png" alt="ATRIA Image 10" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(11).png" alt="ATRIA Image 11" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(12).png" alt="ATRIA Image 12" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(13).png" alt="ATRIA Image 13" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(14).png" alt="ATRIA Image 14" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(15).png" alt="ATRIA Image 15" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(16).png" alt="ATRIA Image 16" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(17).png" alt="ATRIA Image 17" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(18).png" alt="ATRIA Image 18" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(19).png" alt="ATRIA Image 19" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(20).png" alt="ATRIA Image 20" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(21).png" alt="ATRIA Image 21" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(22).png" alt="ATRIA Image 22" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(23).png" alt="ATRIA Image 23" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(24).png" alt="ATRIA Image 24" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(25).png" alt="ATRIA Image 25" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(26).png" alt="ATRIA Image 26" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(27).png" alt="ATRIA Image 27" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(28).png" alt="ATRIA Image 28" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(29).png" alt="ATRIA Image 29" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(30).png" alt="ATRIA Image 30" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(31).png" alt="ATRIA Image 31" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(32).png" alt="ATRIA Image 32" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(33).png" alt="ATRIA Image 33" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(34).png" alt="ATRIA Image 34" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(35).png" alt="ATRIA Image 35" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(36).png" alt="ATRIA Image 36" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(37).png" alt="ATRIA Image 37" loading="lazy">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Images/%23%20(38).png" alt="ATRIA Image 38" loading="lazy">
+                        </div>
+                    </div>
+
+                    <button class="carousel-nav carousel-prev" id="carousel-prev">&#8249;</button>
+                    <button class="carousel-nav carousel-next" id="carousel-next">&#8250;</button>
+                </div>
+
+                <div class="carousel-indicators" id="carousel-indicators">
+                    <!-- Indicators will be generated by JavaScript -->
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="control-btn" id="auto-play-btn">Auto Play</button>
+                    <button class="control-btn" id="fullscreen-btn">Fullscreen</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
     <!-- Download Section -->
     <section id="download" class="download modern-section" style="margin-top: -1px; background: linear-gradient(135deg, #3498db 0%, #2980b9 50%, #1f5f8b 100%);">
@@ -882,6 +1342,183 @@
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(card);
+        });
+
+        // Fantastic Carousel Functionality
+        let currentSlide = 0;
+        let autoPlayInterval = null;
+        let isAutoPlaying = false;
+
+        const carouselTrack = document.getElementById('carousel-track');
+        const carouselPrev = document.getElementById('carousel-prev');
+        const carouselNext = document.getElementById('carousel-next');
+        const currentImageSpan = document.getElementById('current-image');
+        const totalImagesSpan = document.getElementById('total-images');
+        const indicatorsContainer = document.getElementById('carousel-indicators');
+        const autoPlayBtn = document.getElementById('auto-play-btn');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        const totalSlides = 38; // Total number of images
+
+        // Generate indicators
+        function generateIndicators() {
+            for (let i = 0; i < totalSlides; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'carousel-indicator';
+                if (i === 0) indicator.classList.add('active');
+                indicator.addEventListener('click', () => goToSlide(i));
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+
+        // Update carousel position
+        function updateCarousel() {
+            const translateX = -currentSlide * 100;
+            carouselTrack.style.transform = `translateX(${translateX}%)`;
+
+            // Update counter
+            currentImageSpan.textContent = currentSlide + 1;
+
+            // Update indicators
+            document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        // Go to specific slide
+        function goToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        // Next slide
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        // Previous slide
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        // Auto play functionality
+        function startAutoPlay() {
+            if (!isAutoPlaying) {
+                isAutoPlaying = true;
+                autoPlayBtn.textContent = 'Stop Auto Play';
+                autoPlayBtn.classList.add('active');
+                autoPlayInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
+            }
+        }
+
+        function stopAutoPlay() {
+            if (isAutoPlaying) {
+                isAutoPlaying = false;
+                autoPlayBtn.textContent = 'Auto Play';
+                autoPlayBtn.classList.remove('active');
+                clearInterval(autoPlayInterval);
+            }
+        }
+
+        // Fullscreen functionality
+        function toggleFullscreen() {
+            const carouselWrapper = document.querySelector('.carousel-wrapper');
+
+            if (!document.fullscreenElement) {
+                carouselWrapper.requestFullscreen().then(() => {
+                    fullscreenBtn.textContent = 'Exit Fullscreen';
+                    fullscreenBtn.classList.add('active');
+                }).catch(err => {
+                    console.log('Error attempting to enable fullscreen:', err);
+                });
+            } else {
+                document.exitFullscreen().then(() => {
+                    fullscreenBtn.textContent = 'Fullscreen';
+                    fullscreenBtn.classList.remove('active');
+                });
+            }
+        }
+
+        // Event listeners
+        carouselNext.addEventListener('click', nextSlide);
+        carouselPrev.addEventListener('click', prevSlide);
+        autoPlayBtn.addEventListener('click', () => {
+            if (isAutoPlaying) {
+                stopAutoPlay();
+            } else {
+                startAutoPlay();
+            }
+        });
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    prevSlide();
+                    break;
+                case 'ArrowRight':
+                    nextSlide();
+                    break;
+                case ' ': // Spacebar
+                    e.preventDefault();
+                    if (isAutoPlaying) {
+                        stopAutoPlay();
+                    } else {
+                        startAutoPlay();
+                    }
+                    break;
+                case 'f':
+                case 'F':
+                    toggleFullscreen();
+                    break;
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        carouselTrack.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        carouselTrack.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide(); // Swipe left - next slide
+                } else {
+                    prevSlide(); // Swipe right - previous slide
+                }
+            }
+        }
+
+        // Initialize carousel
+        generateIndicators();
+        updateCarousel();
+
+        // Pause auto-play when user hovers over carousel
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            if (isAutoPlaying) {
+                clearInterval(autoPlayInterval);
+            }
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            if (isAutoPlaying) {
+                autoPlayInterval = setInterval(nextSlide, 3000);
+            }
         });
     </script>
 </body>
