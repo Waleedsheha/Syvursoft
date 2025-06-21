@@ -1,7 +1,8 @@
 /* Terms of Service Page Styles */
 .terms {
-    padding: 90px 0;
+    padding: 90px 0 90px 0;
     background-color: #f0f5ff;
+    margin-bottom: 0;
 }
 
 .terms h1 {
@@ -133,25 +134,25 @@
     .terms {
         padding: 70px 0;
     }
-    
+
     .terms h1 {
         font-size: 2.2rem;
     }
-    
+
     .section {
         padding: 25px 20px;
     }
-    
+
     .section h2 {
         font-size: 1.5rem;
     }
-    
+
     .contact-info {
         flex-direction: column;
         gap: 15px;
         align-items: center;
     }
-    
+
     .contact-item {
         width: 100%;
         max-width: 350px;
@@ -162,19 +163,19 @@
     .terms {
         padding: 50px 0;
     }
-    
+
     .terms h1 {
         font-size: 1.9rem;
     }
-    
+
     .section h2 {
         font-size: 1.4rem;
     }
-    
+
     .section {
         padding: 20px 15px;
     }
-    
+
     .section p, .section li {
         font-size: 1rem;
     }
@@ -187,6 +188,16 @@
     background-color: #f8f8f8;
     border-left: 4px solid #0056b3;
     margin-bottom: 20px;
+}
+
+/* Ensure no gap between terms section and footer */
+footer {
+    margin-top: 0 !important;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 
