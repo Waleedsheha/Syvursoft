@@ -11,5 +11,18 @@
         "38:66:5A:D5:C6:4E:83:5C:E0:6B:9A:FE:22:47:88:F8:0C:61:CE:C6:9D:9B:DE:58:C6:76:53:63:FF:D5:02:71"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.syvursoft.atria",
+      "sha256_cert_fingerprints": [
+        "D8:3C:E7:63:4E:33:D7:EE:0E:90:4A:F0:65:A3:F9:E4:E7:52:E8:B1:7E:0B:B2:C1:95:A8:13:CC:56:59:FC:F6"
+      ]
+    }
   }
 ]
